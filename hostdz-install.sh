@@ -328,8 +328,9 @@ if [ "$INSTALLWEBMIN1" = "YES" ]; then
   WEBMINDOWN=YES
   ping -c1 -w2 www.webmin.com > /dev/null
   if [ $? = 0 ] ; then
-    wget -t 5 http://www.webmin.com/jcameron-key.asc
-    apt-key add jcameron-key.asc
+    ##wget -t 5 http://www.webmin.com/jcameron-key.asc
+    cp /etc/hostdz/jcameron-key.asc /root/jcameron-key.asc
+	apt-key add jcameron-key.asc
     if [ $? = 0 ] ; then
       WEBMINDOWN=NO
     fi
