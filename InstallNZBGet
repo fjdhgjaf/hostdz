@@ -30,7 +30,7 @@ IPADDRESS1=`ifconfig | sed -n 's/.*inet addr:\([0-9.]\+\)\s.*/\1/p' | grep -v 12
 sudo add-apt-repository --yes ppa:modriscoll/nzbget
 sudo apt-get --yes update
 sudo apt-get --yes install unrar
-sudo apt-get --yes libncurses5-dev libsigc++-dev sigc++ libpar2-0-dev libssl-dev libgnutls-dev libxml2-dev build-essential unrar unzip p7zip-full
+sudo apt-get --yes install libncurses5-dev libsigc++-dev sigc++ libpar2-0-dev libssl-dev libgnutls-dev libxml2-dev build-essential unrar unzip p7zip-full
 
 
 wget http://sourceforge.net/projects/nzbget/files/nzbget-12.0.tar.gz
