@@ -562,10 +562,12 @@ sudo dpkg -i libdigest-sha1-perl_2.13-2build2_amd64.deb
 
 ##sudo svn checkout http://svn.code.sf.net/p/xmlrpc-c/code/stable xmlrpc-c
 ##sudo wget http://libtorrent.rakshasa.no/downloads/libtorrent-0.13.4.tar.gz
-mkdir -p cd /etc/hostdz/source/xmlrpc-c
-cd /etc/hostdz/source/xmlrpc-c
+mkdir -p /etc/hostdz/source/xmlrpc-c
+chmod -R 755 /etc/hostdz/source/xmlrpc-c
 cp /etc/hostdz/xmlrpc.zip /etc/hostdz/source/xmlrpc-c/xmlrpc.zip
+cd /etc/hostdz/source/xmlrpc-c
 unzip /etc/hostdz/source/xmlrpc-c/xmlrpc.zip
+chmod -R 755 /etc/hostdz/source/xmlrpc-c
 
 cd /etc/hostdz/source
 
