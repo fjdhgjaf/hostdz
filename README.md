@@ -6,7 +6,7 @@ Installation
 - time bash ~/hostdz-install.sh username password SHARED(YES/NO)<br>
 **use eg: <br>
 wget -N https://raw.githubusercontent.com/fjdhgjaf/hostdz/v0.2/hostdz-install.sh <br>
-time bash ~/hostdz-install.sh hostdzire 2yg8FNbB2W YES**<br><br><br><br><br><br><br><br><br><br><br>
+time bash ~/hostdz-install.sh hostdzire 2yg8FNbB2W YES**<br><br><br><br><br><br><br><br>
 
 
 VPS based installation
@@ -16,7 +16,7 @@ VPS based installation
 - time bash ~/hostdz-install.sh username password SHARED(YES/NO)<br>
 **use eg: <br>
 wget -N https://raw.githubusercontent.com/fjdhgjaf/hostdz/v0.2/hostdz-install.sh <br>
-time bash ~/hostdz-install.sh hostdzire 2yg8FNbB2W NO**<br><br><br><br><br><br><br><br><br><br><br><br>
+time bash ~/hostdz-install.sh hostdzire 2yg8FNbB2W NO**<br><br><br><br><br><br><br><br>
 
 
 Other apps installation
