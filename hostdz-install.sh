@@ -567,6 +567,8 @@ cd /etc/hostdz/source/xmlrpc-c
 cp /etc/hostdz/xmlrpc.zip /etc/hostdz/source/xmlrpc-c/xmlrpc.zip
 unzip /etc/hostdz/source/xmlrpc-c/xmlrpc.zip
 
+cd /etc/hostdz/source
+
 tar xf libtorrent-0.13.4.tar.gz
 ##sudo wget http://libtorrent.rakshasa.no/downloads/rtorrent-0.9.4.tar.gz
 tar xvf rtorrent-0.9.4.tar.gz
