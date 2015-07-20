@@ -642,13 +642,13 @@ if [ "$SHAREDSEEDBOX1" = "NO" ]; then
 	bash createSeedboxUser $NEWUSER1 $PASSWORD1 YES YES YES
 else
 	bash createSeedboxUser $NEWUSER1 $PASSWORD1 NO NO NO
+	perl -pi -e "s/USERHASSSHACCESS1=YES/USERHASSSHACCESS1=NO/g" /etc/hostdz/createSeedboxUser
+	perl -pi -e "s/USERINSUDOERS1=YES/USERINSUDOERS1=NO/g" /etc/hostdz/createSeedboxUser
+
+	perl -pi -e "s/USERHASSSHACCESS1=YES/USERHASSSHACCESS1=NO/g" /usr/bin/createSeedboxUser
+	perl -pi -e "s/USERINSUDOERS1=YES/USERINSUDOERS1=NO/g" /usr/bin/createSeedboxUser
 fi
 
-perl -pi -e "s/USERHASSSHACCESS1=YES/USERHASSSHACCESS1=NO/g" /etc/hostdz/createSeedboxUser
-perl -pi -e "s/USERINSUDOERS1=YES/USERINSUDOERS1=NO/g" /etc/hostdz/createSeedboxUser
-
-perl -pi -e "s/USERHASSSHACCESS1=YES/USERHASSSHACCESS1=NO/g" /usr/bin/createSeedboxUser
-perl -pi -e "s/USERINSUDOERS1=YES/USERINSUDOERS1=NO/g" /usr/bin/createSeedboxUser
 clear
 
 echo ""
