@@ -432,7 +432,9 @@ cd MediaInfo/Project/GNU/CLI
 make install
 
 cd /var/www/rutorrent/plugins
-svn co https://svn.code.sf.net/p/autodl-irssi/code/trunk/rutorrent/autodl-irssi
+##mkdir -p /var/www/rutorrent/plugins/autodl-irssi/
+#svn co https://svn.code.sf.net/p/autodl-irssi/code/trunk/rutorrent/autodl-irssi
+mv /etc/hostdz/autodl/autodl-irssi/ /var/www/rutorrent/plugins/autodl-irssi/
 
 # Installing Filemanager and MediaStream
 
