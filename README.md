@@ -25,6 +25,10 @@ Other apps installation
 -  bash /etc/hostdz/InstallVNC <username> <password><br>
 **use eg: bash /etc/hostdz/InstallVNC hostdzire 2yg8FNbB2W**<br><br>
 
+- **Plex install**
+-  bash /etc/hostdz/InstallPlex <username> <password><br>
+**use eg: bash /etc/hostdz/InstallPlex**<br><br>
+
 - **Bitorrentsync install**
 -  bash /etc/hostdz/InstallBitorrentsync <username><br>
 **use eg: bash /etc/hostdz/InstallVNC hostdzire**<br><br>
