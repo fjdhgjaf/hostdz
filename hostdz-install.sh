@@ -636,7 +636,11 @@ echo " * hard nofile 999999" | tee -a /etc/security/limits.conf > /dev/null
 echo "session required pam_limits.so" | tee -a /etc/pam.d/common-session* > /dev/null
 echo "session required pam_limits.so" | tee -a /etc/pam.d/common-session > /dev/null
 
-createSeedboxUser $NEWUSER1 $PASSWORD1
+if [ "$SHAREDSEEDBOX1" = "NO" ]; then
+	bash createSeedboxUser $NEWUSER1 $PASSWORD1 YES YES YES
+else
+	bash createSeedboxUser $NEWUSER1 $PASSWORD1 NO NO NO
+fi
 
 perl -pi -e "s/USERHASSSHACCESS1=YES/USERHASSSHACCESS1=NO/g" /etc/hostdz/createSeedboxUser
 perl -pi -e "s/USERINSUDOERS1=YES/USERINSUDOERS1=NO/g" /etc/hostdz/createSeedboxUser
