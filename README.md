@@ -3,20 +3,20 @@ Host Dzire seedbox install script
 Installation
 --------------
 - wget -N https://raw.githubusercontent.com/fjdhgjaf/hostdz/v0.2/hostdz-install.sh <br>
-- time bash ~/hostdz-install.sh username password SHARED(YES/NO)<br>
+- time bash ~/hostdz-install.sh username password SHARED(YES/NO) SSD(YES/NO)<br>
 **use eg: <br>
 wget -N https://raw.githubusercontent.com/fjdhgjaf/hostdz/v0.2/hostdz-install.sh <br>
-time bash ~/hostdz-install.sh hostdzire 2yg8FNbB2W YES**<br><br><br><br><br><br><br><br>
+time bash ~/hostdz-install.sh hostdzire 2yg8FNbB2W YES NO**<br><br><br><br><br><br><br><br>
 
 
 VPS based installation
 --------------
 - **apt-get update --yes**<br>
 - wget -N https://raw.githubusercontent.com/fjdhgjaf/hostdz/v0.2/hostdz-install.sh <br>
-- time bash ~/hostdz-install.sh username password SHARED(YES/NO)<br>
+- time bash ~/hostdz-install.sh username password SHARED(YES/NO) SSD(YES/NO)<br>
 **use eg: <br>
 wget -N https://raw.githubusercontent.com/fjdhgjaf/hostdz/v0.2/hostdz-install.sh <br>
-time bash ~/hostdz-install.sh hostdzire 2yg8FNbB2W NO**<br><br><br><br><br><br><br><br>
+time bash ~/hostdz-install.sh hostdzire 2yg8FNbB2W NO NO**<br><br><br><br><br><br><br><br>
 
 
 Other apps installation

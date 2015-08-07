@@ -138,6 +138,11 @@ if [ "$SHARED1" = "YES" ]; then
 else
 	SHAREDSEEDBOX1=YES
 fi
+if [ "$SHARED1" = "NO" ]; then
+	getString NO  "The server SSD?(YES/NO)" SSD1 $4
+else
+	SSD1=NO
+fi
 #getString NO  "SSH port: " NEWSSHPORT1 22
 #getString NO  "vsftp port (alap 21): " NEWFTPPORT1 21
 #getString NO  "Do you want to have some of your users in a chroot jail? " CHROOTJAIL1 YES
