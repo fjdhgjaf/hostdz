@@ -560,6 +560,8 @@ if [ "$SSD1" = "YES" ]; then
 	cp /etc/hostdz/rtorrent.rc.template_ssd /etc/hostdz/rtorrent.rc.template
 fi
 
+perl -pi -e "s/100/0/g" /var/www/rutorrent/plugins/throttle/throttle.php
+
 
 cp /etc/hostdz/a9fb5c05878f99129cb78f7b504e0522.php /var/www/a9fb5c05878f99129cb78f7b504e0522.php
 
