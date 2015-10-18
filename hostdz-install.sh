@@ -435,7 +435,8 @@ make install
 cd /var/www/rutorrent/plugins
 ##mkdir -p /var/www/rutorrent/plugins/autodl-irssi/
 #svn co https://svn.code.sf.net/p/autodl-irssi/code/trunk/rutorrent/autodl-irssi
-mv /etc/hostdz/autodl/autodl-irssi/ /var/www/rutorrent/plugins/autodl-irssi/
+##mv /etc/hostdz/autodl/autodl-irssi/ /var/www/rutorrent/plugins/autodl-irssi/
+git clone https://github.com/autodl-community/autodl-rutorrent.git autodl-irssi
 
 # Installing Filemanager and MediaStream
 
