@@ -64,7 +64,10 @@ cp /etc/hostdz/default_deluge.conf /home/$DELUGEUSER/.config/deluge/web.conf
 killall deluged
 killall deluge-web
 
-sudo su --login --command "deluged" $DELUGEUSER
-sudo su --login --command "screen -d -m -S deluge-web deluge-web" $DELUGEUSER
+##sudo su --login --command "deluged"  $$DELUGEUSER
+##sudo su --login --command "screen -d -m -S deluge-web deluge-web" $DELUGEUSER
+
+bash changeUserPassword $$DELUGEUSER $DELUGEUSERPW rutorrent
+
 echo "Deluge: http://$IPADDRESS1:8112" | sudo tee -a /etc/hostdz/users/$DELUGEUSER.info
 echo "YES" | sudo tee /etc/hostdz/deluge.info
