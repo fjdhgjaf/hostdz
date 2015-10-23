@@ -17,5 +17,5 @@
   "default_daemon": "",
   "sidebar_multiple_filters": true,
   "pwd_salt": "<salt>",
-  "port": <web-port>
+  "port": 8112
 }
