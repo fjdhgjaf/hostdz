@@ -15,6 +15,7 @@ VPS based installation
 - wget -N https://raw.githubusercontent.com/fjdhgjaf/hostdz/v0.2/hostdz-install.sh <br>
 - time bash ~/hostdz-install.sh username password SHARED(YES/NO) SSD(YES/NO)<br>
 **use eg: <br>
+apt-get update --yes<br>
 wget -N https://raw.githubusercontent.com/fjdhgjaf/hostdz/v0.2/hostdz-install.sh <br>
 time bash ~/hostdz-install.sh hostdzire 2yg8FNbB2W NO NO**<br><br><br><br><br><br><br><br>
 
