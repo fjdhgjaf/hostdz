@@ -19,6 +19,8 @@ IPADDRESS1=`ifconfig | sed -n 's/.*inet addr:\([0-9.]\+\)\s.*/\1/p' | grep -v 12
 wget -N api.hostdzire.com/plexmediaserver_0.9.12.4.1192-9a47d21_amd64.deb
 sudo dpkg -i plexmediaserver_0.9.12.4.1192-9a47d21_amd64.deb
 
+sudo service plexmediaserver start
+
 echo
 echo -e "${bldgrn}Plex installed! ${bldylw}Login: $IPADDRESS1:32400/web${txtrst}"
 echo
