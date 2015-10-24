@@ -50,10 +50,11 @@ if (file_exists("/etc/hostdz/users/".$argv[1].".info")){
 		$quotaUser = $argv[1];
 		$homeUser = $topDirectory.'/'.$quotaUser;
 		$homeBase = $topDirectory;
-		$quotaEnabled = true;
+		$quotaEnabled = false;
 
 		if (isset($quotaUser) and !Empty($quotaUser) and file_exists($homeBase.'/aquota.user')) {
 			$quotaEnabled = myGetDirs($quotaUser, &$homeUser, &$homeBase); /// get the real home dir
+			$quotaEnabled = true;
 		}
 
 		if ($quotaEnabled) {
