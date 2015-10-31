@@ -20,4 +20,4 @@ sudo unzip -o autodl-irssi-community-v1.53.zip
 sudo rm -R autodl-irssi-community-v1.53.zip
 
 sudo cp autodl-irssi.pl autorun/
-sudo rm -R UserIrssiReinstall
+##sudo rm -R UserIrssiReinstall
