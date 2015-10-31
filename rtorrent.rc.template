@@ -277,5 +277,9 @@ trackers.numwant.set = 400
 # Disable SSL verification
 network.http.ssl_verify_peer.set=0
 system.file_allocate.set = yes
+network.max_open_sockets.set = 65535
+throttle.max_uploads.global.set = 0
+throttle.max_downloads.global.set = 0
+
 
 execute = {sh,-c,/usr/bin/php /var/www/rutorrent/php/initplugins.php <username> &}
