@@ -76,14 +76,14 @@ download_rate = 0
 # max mapped memory 
 # nb does not refer to physical memory 
 # max_memory_usage = 3500M 
-pieces.memory.max.set = 4G 
+pieces.memory.max.set = 24G 
  
 # max number of files to keep open simultaneously 
 # max_open_files = 192 
 network.max_open_files.set = 65535
  
 # max_open_http = 32 
-network.http.max_open.set = 32
+network.http.max_open.set = 320
  
  
 # BitTorrent Settings 
@@ -206,8 +206,8 @@ pieces.preload.type.set = 0
 ###pieces.preload.type.set szerk 1-ről 0
 pieces.preload.min_size.set = 262144
 pieces.preload.min_rate.set = 5120
-network.send_buffer.size.set = 4M
-network.receive_buffer.size.set = 4M
+network.send_buffer.size.set = 0
+network.receive_buffer.size.set = 0
 
 pieces.sync.always_safe.set = no
 pieces.sync.timeout.set = 600
@@ -277,5 +277,8 @@ trackers.numwant.set = 400
 # Disable SSL verification
 network.http.ssl_verify_peer.set=0
 system.file_allocate.set = yes
+network.max_open_sockets.set = 65535
+throttle.max_uploads.global.set = 0
+throttle.max_downloads.global.set = 0
 
 execute = {sh,-c,/usr/bin/php /var/www/rutorrent/php/initplugins.php <username> &}
