@@ -1,0 +1,22 @@
+##################### FIRST LINE
+# ---------------------------
+#!/bin/bash
+# ---------------------------
+#
+# |--------------------------------------------------------------|
+# | The script thank you for Notos (notos.korsan@gmail.com)      |
+# |--------------------------------------------------------------|
+# | The script was further developed Tiby08 (tiby0108@gmail.com) |
+# |--------------------------------------------------------------|
+#
+#
+IRSSIUSERNAME=$1
+sudo rm -R /home/$IRSSIUSERNAME/.irssi
+sudo mkdir -p /home/$IRSSIUSERNAME/.irssi/scripts/autorun
+cd /home/$IRSSIUSERNAME/.irssi/scripts
+
+sudo wget -N --no-check-certificate https://hostdzire.com/autodl-irssi-community-v1.53.zip
+sudo unzip -o autodl-irssi-community-v1.53.zip
+sudo rm -R autodl-irssi-community-v1.53.zip
+
+sudo cp autodl-irssi.pl autorun/
