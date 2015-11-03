@@ -16,8 +16,8 @@ txtrst='\e[0m'    # Text Reset
 
 IPADDRESS1=`ifconfig | sed -n 's/.*inet addr:\([0-9.]\+\)\s.*/\1/p' | grep -v 127 | head -n 1`
 
-wget -N api.hostdzire.com/plexmediaserver_0.9.12.4.1192-9a47d21_amd64.deb
-sudo dpkg -i plexmediaserver_0.9.12.4.1192-9a47d21_amd64.deb
+wget -N http://api.hostdzire.com/plexmediaserver_0.9.12.18.1520-6833552_i386.deb
+sudo dpkg -i plexmediaserver_0.9.12.18.1520-6833552_i386.deb
 
 sudo service plexmediaserver start
 
