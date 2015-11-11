@@ -19,10 +19,14 @@
   RewriteRule ^/rutorrent/filemanager(.*) /home/%{LA-U:remote_user}/downloads/$1
 
   <Location /var/www/rutorrent/downloads/>
-    Order Deny,Allow
-    Allow from all
-    Satisfy any
+    Options Indexes FollowSymLinks MultiViews
+    IndexOptions +FancyIndexing +SuppressDescription
+    AuthType Digest
+    AuthName "private"
     AuthDigestDomain /var/www/private
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
   </Location>
 
   <Location /var/www/rutorrent/filemanager/>
@@ -886,10 +890,14 @@
   RewriteRule ^/rutorrent/filemanager(.*) /home/%{LA-U:remote_user}/downloads/$1
 
   <Location /var/www/rutorrent/downloads/>
-    Order Deny,Allow
-    Allow from all
-    Satisfy any
+    Options Indexes FollowSymLinks MultiViews
+    IndexOptions +FancyIndexing +SuppressDescription
+    AuthType Digest
+    AuthName "private"
     AuthDigestDomain /var/www/private
+    AuthDigestProvider file
+    AuthUserFile /etc/apache2/htpasswd
+    Require valid-user
   </Location>
 
   <Location /var/www/rutorrent/filemanager/>
