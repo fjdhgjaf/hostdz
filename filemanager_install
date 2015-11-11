@@ -34,9 +34,12 @@ IPADDRESS1=`ifconfig | sed -n 's/.*inet addr:\([0-9.]\+\)\s.*/\1/p' | grep -v 12
      echo "Error no password!"
        exit 0
     fi
+wget -N https://raw.githubusercontent.com/fjdhgjaf/hostdz/751423da22bb1bcf95f9ad45974030129d02556e/filemanager.php
+sudo cp ~/filemanager.php /home/$FilemanagerUser/downloads/filemanager.php > /dev/null
+
 sudo perl -pi -e "s/<hdusername>/$FilemanagerUser/g" /home/$FilemanagerUser/downloads/filemanager.php
 sudo perl -pi -e "s/<hduserpassword>/$FilemanagerUserPW/g" /home/$FilemanagerUser/downloads/filemanager.php
 
 echo
-echo -e "${bldgrn}BitTorrent-Sync installed! ${bldylw}Web: https://$IPADDRESS1/rutorrent/filemanager${txtrst}"
+echo -e "${bldgrn}Filemanager installed! ${bldylw}Web: https://$IPADDRESS1/rutorrent/filemanager${txtrst}"
 echo
