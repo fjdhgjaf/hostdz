@@ -15,11 +15,21 @@
   RewriteCond %{LA-U:remote_user} !^$
   RewriteRule ^/rutorrent/downloads(.*) /home/%{LA-U:remote_user}/downloads/manual/$1
 
+  RewriteCond %{LA-U:remote_user} !^$
+  RewriteRule ^/rutorrent/filemanager(.*) /home/%{LA-U:remote_user}/downloads/$1
+
   <Location /var/www/rutorrent/downloads/>
     Order Deny,Allow
     Allow from all
     Satisfy any
     AuthDigestDomain /var/www/private
+  </Location>
+
+  <Location /var/www/rutorrent/filemanager/>
+    Order Deny,Allow
+    Allow from all
+    Satisfy any
+    AuthDigestDomain /var/www/filemanager
   </Location>
 
   <Directory /var/www/>
@@ -872,11 +882,21 @@
   RewriteCond %{LA-U:remote_user} !^$
   RewriteRule ^/rutorrent/downloads(.*) /home/%{LA-U:remote_user}/downloads/manual/$1
 
+  RewriteCond %{LA-U:remote_user} !^$
+  RewriteRule ^/rutorrent/filemanager(.*) /home/%{LA-U:remote_user}/downloads/$1
+
   <Location /var/www/rutorrent/downloads/>
     Order Deny,Allow
     Allow from all
     Satisfy any
     AuthDigestDomain /var/www/private
+  </Location>
+
+  <Location /var/www/rutorrent/filemanager/>
+    Order Deny,Allow
+    Allow from all
+    Satisfy any
+    AuthDigestDomain /var/www/filemanager
   </Location>
   DocumentRoot /var/www/
 
