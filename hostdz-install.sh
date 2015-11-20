@@ -542,7 +542,7 @@ cp /etc/hostdz/createSeedboxUser /usr/bin/createSeedboxUser
 cp /etc/hostdz/changeUserPassword /usr/bin/changeUserPassword
 cp /etc/hostdz/deleteSeedboxUser /usr/bin/deleteSeedboxUser
 
-wget -P /etc/hostdz/ http://rtorrent.net/downloads/libtorrent-0.13.6.tar.gz
+wget -P /etc/hostdz/ http://rtorrent.net/downloads/libtorrent-0.13.4.tar.gz
 wget -P /etc/hostdz/ http://rtorrent.net/downloads/rtorrent-0.9.6.tar.gz
 
 cp /var/www/rutorrent/favicon.ico /var/www/favicon.ico
@@ -555,7 +555,7 @@ cp /etc/hostdz/libtorrent-0.13.2.tar.gz /etc/hostdz/source/libtorrent-0.13.2.tar
 cp /etc/hostdz/rtorrent-0.9.4.tar.gz /etc/hostdz/source/rtorrent-0.9.4.tar.gz
 cp /etc/hostdz/libtorrent-0.13.4.tar.gz /etc/hostdz/source/libtorrent-0.13.4.tar.gz
 cp /etc/hostdz/rtorrent-0.9.6.tar.gz /etc/hostdz/source/rtorrent-0.9.6.tar.gz
-cp /etc/hostdz/libtorrent-0.13.6.tar.gz /etc/hostdz/source/libtorrent-0.13.6.tar.gz
+cp /etc/hostdz/libtorrent-0.13.4.tar.gz /etc/hostdz/source/libtorrent-0.13.4.tar.gz
 
 if [ "$SSD1" = "YES" ]; then
 	mv /etc/hostdz/rtorrent.rc.template /etc/hostdz/rtorrent.rc.template_old
@@ -586,7 +586,7 @@ unzip /etc/hostdz/source/xmlrpc-c/xmlrpc.zip
 
 cd /etc/hostdz/source
 
-tar xf libtorrent-0.13.6.tar.gz
+tar xf libtorrent-0.13.4.tar.gz
 ##sudo wget http://libtorrent.rakshasa.no/downloads/rtorrent-0.9.4.tar.gz
 tar xvf rtorrent-0.9.6.tar.gz
 
@@ -597,7 +597,7 @@ cd /etc/hostdz/source/xmlrpc-c
 make -j 8 && make install
 updatedb
 
-cd /etc/hostdz/source/libtorrent-0.13.6
+cd /etc/hostdz/source/libtorrent-0.13.4
 sudo ./autogen.sh
 sudo ./configure --prefix=/usr
 make -j 8 && make install
