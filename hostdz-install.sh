@@ -238,14 +238,14 @@ perl -pi -e "s/squeeze-updates main/squeeze-updates  main contrib non-free/g" /e
 # 7.
 # update and upgrade packages
 
-apt-get --yes update
-apt-get --yes upgrade
+apt-get --yes update 2>&1
+apt-get --yes upgrade 2>&1
 
 # 8.
 #install all needed packages
 
 ##apt-get --yes build-dep znc
-apt-get --yes install apache2 apache2-utils autoconf build-essential ca-certificates comerr-dev curl cfv quota mktorrent dtach htop irssi libapache2-mod-php5 libcloog-ppl-dev libcppunit-dev libcurl3 libcurl4-openssl-dev libncurses5-dev libterm-readline-gnu-perl libsigc++-2.0-dev libperl-dev openvpn libssl-dev libtool libxml2-dev ncurses-base ncurses-term ntp openssl patch libc-ares-dev pkg-config php5 php5-cli php5-dev php5-curl php5-geoip php5-mcrypt php5-gd php5-xmlrpc pkg-config python-scgi screen ssl-cert subversion texinfo unzip zlib1g-dev expect joe automake1.9 flex bison debhelper binutils-gold libav-tools libarchive-zip-perl libnet-ssleay-perl libhtml-parser-perl libxml-libxml-perl libjson-perl libjson-xs-perl libxml-libxslt-perl libxml-libxml-perl libjson-rpc-perl libarchive-zip-perl znc tcpdump
+apt-get --yes install apache2 apache2-utils autoconf build-essential ca-certificates comerr-dev curl cfv quota mktorrent dtach htop irssi libapache2-mod-php5 libcloog-ppl-dev libcppunit-dev libcurl3 libcurl4-openssl-dev libncurses5-dev libterm-readline-gnu-perl libsigc++-2.0-dev libperl-dev openvpn libssl-dev libtool libxml2-dev ncurses-base ncurses-term ntp openssl patch libc-ares-dev pkg-config php5 php5-cli php5-dev php5-curl php5-geoip php5-mcrypt php5-gd php5-xmlrpc pkg-config python-scgi screen ssl-cert subversion texinfo unzip zlib1g-dev expect flex bison debhelper binutils-gold libarchive-zip-perl libnet-ssleay-perl libhtml-parser-perl libxml-libxml-perl libjson-perl libjson-xs-perl libxml-libxslt-perl libxml-libxml-perl libjson-rpc-perl libarchive-zip-perl tcpdump 2>&1
 if [ $? -gt 0 ]; then
   set +x verbose
   echo -e "${bldred}#${txtrst}"
@@ -266,20 +266,20 @@ if [ $? -gt 0 ]; then
   set -e
   exit 1
 fi
-apt-get --yes install zip
-apt-get --yes install python-software-properties
+apt-get --yes install zip 2>&1
+apt-get --yes install python-software-properties 2>&1
 
-apt-get --yes install rar
+apt-get --yes install rar 2>&1
 if [ $? -gt 0 ]; then
-  apt-get --yes install rar-free
+  apt-get --yes install rar-free 2>&1
 fi
 
-apt-get --yes install unrar
+apt-get --yes install unrar 2>&1
 if [ $? -gt 0 ]; then
-  apt-get --yes install unrar-free
+  apt-get --yes install unrar-free 2>&1
 fi
 
-apt-get --yes install dnsutils
+apt-get --yes install dnsutils 2>&1
 
 if [ "$CHROOTJAIL1" = "YES" ]; then
   cd /etc/hostdz
@@ -292,9 +292,9 @@ fi
 
 # 8.1 additional packages for Ubuntu
 # this is better to be apart from the others
-apt-get --yes install php5-fpm
-apt-get --yes install php5-xcache
-apt-get --yes install landscape-common
+apt-get --yes install php5-fpm 2>&1
+apt-get --yes install php5-xcache 2>&1
+apt-get --yes install landscape-common 2>&1
 
 #Check if its Debian an do a sysvinit by upstart replacement:
 
@@ -338,13 +338,13 @@ if [ "$INSTALLWEBMIN1" = "YES" ]; then
   fi
 
   if [ "$WEBMINDOWN" = "NO" ]; then
-    apt-get --yes update
-    apt-get --yes install webmin
+    apt-get --yes update 2>&1
+    apt-get --yes install webmin 2>&1
   fi
 fi
 
 if [ "$INSTALLFAIL2BAN1" = "YES" ]; then
-  apt-get --yes install fail2ban
+  apt-get --yes install fail2ban 2>&1
   cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.conf.original
   cp /etc/hostdz/etc.fail2ban.jail.conf.template /etc/fail2ban/jail.conf
   fail2ban-client reload
@@ -367,7 +367,7 @@ echo "ServerSignature Off" | tee -a /etc/apache2/apache2.conf > /dev/null
 echo "ServerTokens Prod" | tee -a /etc/apache2/apache2.conf > /dev/null
 echo "Timeout 30" | tee -a /etc/apache2/apache2.conf > /dev/null
 #########BELESZERK
-apt-get --yes install libapache2-mod-scgi
+apt-get --yes install libapache2-mod-scgi 2>&1
 a2enmod ssl
 a2enmod auth_digest
 a2enmod reqtimeout
