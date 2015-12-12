@@ -99,4 +99,3 @@ if ($argv[1] == "gepadat"){
 		addUnitss($SwapFree*1024)."=|=".
 		round((100 - ($SwapFree / $SwapTotal) * 100), 1);
 	}
-	<?
