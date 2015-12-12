@@ -4,7 +4,6 @@ ignore_user_abort(true);
 set_time_limit(0);
 ini_set('display_errors', '0');
 error_reporting(0);
-if ($argv[1] == "gepadat"){
 	function addUnitss($bytes) {
 		$units = array('B','kB','MB','GB','TB','PB','EB');
 		for($i = 0; $bytes >= 1024 && $i < count($units) - 1; $i++ ) {
@@ -12,6 +11,7 @@ if ($argv[1] == "gepadat"){
 		}
 		return round($bytes, 1).' '.$units[$i];
 	}
+if ($argv[1] == "gepadat"){
                 $TeljesMeret = disk_total_space("/home/");
                 $SzabadTerulet = disk_free_space("/home/");
                 $FelhasznaltTerulet = $TeljesMeret - $SzabadTerulet;
