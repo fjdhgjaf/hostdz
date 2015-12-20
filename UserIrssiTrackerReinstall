@@ -1,0 +1,20 @@
+##################### FIRST LINE
+# ---------------------------
+#!/bin/bash
+# ---------------------------
+#
+# |--------------------------------------------------------------|
+# | The script thank you for Notos (notos.korsan@gmail.com)      |
+# |--------------------------------------------------------------|
+# | The script was further developed Tiby08 (tiby0108@gmail.com) |
+# |--------------------------------------------------------------|
+#
+#
+IRSSIUSERNAME=$1
+sudo rm -R /home/$IRSSIUSERNAME/.irssi/scripts/AutodlIrssi/trackers/
+sudo mkdir -p /home/$IRSSIUSERNAME/.irssi/scripts/AutodlIrssi/trackers/
+cd /home/$IRSSIUSERNAME/.irssi/scripts/AutodlIrssi/trackers/
+
+sudo wget -N --no-check-certificate https://hostdzire.com/autodl-trackers-v251.zip
+sudo unzip -o autodl-trackers-v251.zip
+sudo rm -R autodl-trackers-v251.zip
