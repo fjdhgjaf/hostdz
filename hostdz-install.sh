@@ -165,11 +165,11 @@ NEWSSHPORT1=22
 INSTALLWEBMIN1=YES
 INSTALLFAIL2BAN1=NO
 INSTALLNZBGET1=$SHAREDSEEDBOX1
-INSTALLSABNZBD1=YES
+INSTALLSABNZBD1=$SHAREDSEEDBOX1
 ##INSTALLRAPIDLEECH1=NO
 ###INSTALLDELUGE1=NO
 INSTALLOPENVPN1=YES
-OPENVPNPORT1 31195
+##OPENVPNPORT1 31195
 #getString NO  "Wich rTorrent would you like to use, '0.8.9' (older stable) or '0.9.2' (newer but banned in some trackers)? " RTORRENT1 0.9.2
 RTORRENT1=0.9.4
 
@@ -508,7 +508,7 @@ bash /etc/hostdz/updateExecutables
 echo $SBFSCURRENTVERSION1 > /etc/hostdz/version.info
 echo $NEWFTPPORT1 > /etc/hostdz/ftp.info
 echo $NEWSSHPORT1 > /etc/hostdz/ssh.info
-echo $OPENVPNPORT1 > /etc/hostdz/openvpn.info
+##echo $OPENVPNPORT1 > /etc/hostdz/openvpn.info
 
 # 36.
 
