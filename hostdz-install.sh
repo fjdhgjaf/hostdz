@@ -188,7 +188,7 @@ else
   LIBTORRENT1=0.12.9
 fi
 
-apt-get --yes install whois sudo makepasswd git
+apt-get --yes install whois sudo makepasswd git ffmpeg
 
 rm -f -r /etc/hostdz
 git clone -b v$SBFSCURRENTVERSION1 https://github.com/fjdhgjaf/hostdz.git /etc/hostdz
