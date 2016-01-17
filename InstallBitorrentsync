@@ -34,7 +34,7 @@ sudo rm -rf /home/$BitorrentSyncUser/btsync
 
 sudo mkdir -p /etc/hostdz/source/btsync
 
-sudo wget -P /etc/hostdz/source/btsync/ --no-check-certificate http://api.hostdzire.com/BitTorrent-Sync_x64.tar.gz
+sudo wget -P /etc/hostdz/source/btsync/ --no-check-certificate http://api.hostdzire.com/download/BitTorrent-Sync_x64.tar.gz
 sudo tar xvfz /etc/hostdz/source/btsync/BitTorrent-Sync_x64.tar.gz -C /etc/hostdz/source/btsync/
 sudo rm -rf /etc/hostdz/source/btsync/BitTorrent-Sync_x64.tar.gz
 mv /etc/hostdz/source/btsync/ /home/$BitorrentSyncUser/btsync/
