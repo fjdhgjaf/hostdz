@@ -408,8 +408,12 @@ echo "ServerName $IPADDRESS1" | tee -a /etc/apache2/apache2.conf > /dev/null
 a2ensite default-ssl
 
 cd /var/www/
-rm -f -r rutorrent
-svn checkout https://github.com/Novik/ruTorrent/trunk rutorrent
+rm -f -R rutorrent
+wget -N --no-check-certificate https://github.com/Novik/ruTorrent/archive/master.zip
+unzip /var/www/master.zip
+mv /var/www/rutorrent-master /var/www/rutorrent
+rm -f -R /var/www/master.zip
+##svn checkout https://github.com/Novik/ruTorrent/trunk rutorrent
 cp /etc/hostdz/action.php.template /var/www/rutorrent/plugins/diskspace/action.php
 
 chown -R www-data:www-data /var/www/rutorrent/
