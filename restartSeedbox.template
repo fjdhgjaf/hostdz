@@ -41,6 +41,7 @@ if [[ -a /etc/hostdz/sabnzbd/SABnzbd.py ]]; then
 fi
 
 if [[ -a $HOME/.config/deluge/web.conf ]]; then
+  rm -f -r /home/<username>/.config/deluge/deluged.pid
   sleep 3
   echo "Starting Deluge..."
   deluged
