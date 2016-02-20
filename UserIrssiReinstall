@@ -31,9 +31,9 @@ sudo rm -R /home/$IRSSIUSERNAME/.irssi
 sudo mkdir -p /home/$IRSSIUSERNAME/.irssi/scripts/autorun
 cd /home/$IRSSIUSERNAME/.irssi/scripts
 
-sudo wget -N --no-check-certificate https://github.com/autodl-community/autodl-irssi/releases/download/community-v$IRSSIVERSION/autodl-irssi-community-v$IRSSIVERSION.zip
-sudo unzip -o autodl-irssi-community-v$IRSSIVERSION.zip
-sudo rm -R /home/$IRSSIUSERNAME/.irssi/scripts/autodl-irssi-community-v$IRSSIVERSION.zip
+sudo wget -N --no-check-certificate https://github.com/autodl-community/autodl-irssi/releases/download/community-$IRSSIVERSION/autodl-irssi-community-$IRSSIVERSION.zip
+sudo unzip -o autodl-irssi-community-$IRSSIVERSION.zip
+sudo rm -R /home/$IRSSIUSERNAME/.irssi/scripts/autodl-irssi-community-$IRSSIVERSION.zip
 
 sudo cp autodl-irssi.pl autorun/
 sudo rm -R /home/$IRSSIUSERNAME/.irssi/scripts/UserIrssiReinstall
