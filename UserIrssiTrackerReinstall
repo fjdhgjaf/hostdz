@@ -12,6 +12,7 @@
 #
 IRSSIUSERNAME=$1
 sudo rm -R /home/$IRSSIUSERNAME/.irssi/scripts/AutodlIrssi/trackers/
+sudo rm -R /root/UserIrssiTrackerReinstall
 sudo mkdir -p /home/$IRSSIUSERNAME/.irssi/scripts/AutodlIrssi/trackers/
 cd /home/$IRSSIUSERNAME/.irssi/scripts/AutodlIrssi/trackers/
 
