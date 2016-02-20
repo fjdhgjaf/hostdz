@@ -411,7 +411,7 @@ cd /var/www/
 rm -f -R rutorrent
 wget -N --no-check-certificate https://github.com/Novik/ruTorrent/archive/master.zip
 unzip /var/www/master.zip
-mv /var/www/rutorrent-master /var/www/rutorrent
+mv /var/www/ruTorrent-master /var/www/rutorrent
 rm -f -R /var/www/master.zip
 ##svn checkout https://github.com/Novik/ruTorrent/trunk rutorrent
 cp /etc/hostdz/action.php.template /var/www/rutorrent/plugins/diskspace/action.php
