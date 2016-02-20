@@ -15,6 +15,6 @@ sudo rm -R /home/$IRSSIUSERNAME/.irssi/scripts/AutodlIrssi/trackers/
 sudo mkdir -p /home/$IRSSIUSERNAME/.irssi/scripts/AutodlIrssi/trackers/
 cd /home/$IRSSIUSERNAME/.irssi/scripts/AutodlIrssi/trackers/
 
-sudo wget -N --no-check-certificate http://api.hostdzire.com/download/autodl-trackers-v251.zip
-sudo unzip -o autodl-trackers-v251.zip
-sudo rm -R autodl-trackers-v251.zip
+sudo wget -N --no-check-certificate https://github.com/autodl-community/autodl-trackers/archive/master.zip
+sudo unzip -o autodl-trackers-master.zip
+sudo rm -R autodl-trackers-master.zip
