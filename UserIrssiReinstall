@@ -11,13 +11,29 @@
 #
 #
 IRSSIUSERNAME=$1
+IRSSIVERSION=$2
+
+ if [ ! $IRSSIUSERNAME ]; then
+    echo -n "Username: "
+      read IRSSIUSERNAME
+    fi
+ if [ ! $IRSSIUSERNAME ]; then
+     echo "Error no Username!"
+       exit 0
+    fi
+
+ if [ ! $IRSSIVERSION ]; then
+      IRSSIVERSION="v1.53"
+    fi
+
+
 sudo rm -R /home/$IRSSIUSERNAME/.irssi
 sudo mkdir -p /home/$IRSSIUSERNAME/.irssi/scripts/autorun
 cd /home/$IRSSIUSERNAME/.irssi/scripts
 
-sudo wget -N --no-check-certificate http://api.hostdzire.com/download/autodl-irssi-community-v1.53.zip
-sudo unzip -o autodl-irssi-community-v1.53.zip
-sudo rm -R /home/$IRSSIUSERNAME/.irssi/scripts/autodl-irssi-community-v1.53.zip
+sudo wget -N --no-check-certificate https://github.com/autodl-community/autodl-irssi/releases/download/community-v$IRSSIVERSION/autodl-irssi-community-v$IRSSIVERSION.zip
+sudo unzip -o autodl-irssi-community-v$IRSSIVERSION.zip
+sudo rm -R /home/$IRSSIUSERNAME/.irssi/scripts/autodl-irssi-community-v$IRSSIVERSION.zip
 
 sudo cp autodl-irssi.pl autorun/
 sudo rm -R /home/$IRSSIUSERNAME/.irssi/scripts/UserIrssiReinstall
