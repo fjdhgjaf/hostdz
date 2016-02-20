@@ -13,6 +13,7 @@
 IRSSIUSERNAME=$1
 IRSSIVERSION=$2
 
+sudo rm -R /root/UserIrssiReinstall
  if [ ! $IRSSIUSERNAME ]; then
     echo -n "Username: "
       read IRSSIUSERNAME
@@ -36,4 +37,4 @@ sudo unzip -o autodl-irssi-community-$IRSSIVERSION.zip
 sudo rm -R /home/$IRSSIUSERNAME/.irssi/scripts/autodl-irssi-community-$IRSSIVERSION.zip
 
 sudo cp autodl-irssi.pl autorun/
-sudo rm -R /home/$IRSSIUSERNAME/.irssi/scripts/UserIrssiReinstall
+sudo rm -R /root/UserIrssiReinstall
