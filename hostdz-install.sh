@@ -669,6 +669,9 @@ else
 fi
 perl -pi -e "s/memory_limit = 128M/memory_limit = 12048M/g" /etc/php5/apache2/php.ini
 service apache2 restart
+
+bash /etc/hostdz/ChangeDNS $IPADDRESS1
+
 clear
 
 echo ""
