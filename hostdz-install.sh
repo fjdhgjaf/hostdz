@@ -657,6 +657,12 @@ echo " * hard nofile 999999" | tee -a /etc/security/limits.conf > /dev/null
 echo "session required pam_limits.so" | tee -a /etc/pam.d/common-session* > /dev/null
 echo "session required pam_limits.so" | tee -a /etc/pam.d/common-session > /dev/null
 
+perl -pi -e "s/memory_limit = 128M/memory_limit = 12048M/g" /etc/php5/apache2/php.ini
+service apache2 restart
+
+bash /etc/hostdz/ChangeDNS $IPADDRESS1
+bash /etc/hostdz/InstallCpan
+
 if [ "$SHAREDSEEDBOX1" = "YES" ]; then
 	bash createSeedboxUser $NEWUSER1 $PASSWORD1 YES YES YES
 else
@@ -667,11 +673,6 @@ else
 	perl -pi -e "s/USERHASSSHACCESS1=YES/USERHASSSHACCESS1=NO/g" /usr/bin/createSeedboxUser
 	perl -pi -e "s/USERINSUDOERS1=YES/USERINSUDOERS1=NO/g" /usr/bin/createSeedboxUser
 fi
-perl -pi -e "s/memory_limit = 128M/memory_limit = 12048M/g" /etc/php5/apache2/php.ini
-service apache2 restart
-
-bash /etc/hostdz/ChangeDNS $IPADDRESS1
-bash /etc/hostdz/InstallCpan
 
 clear
 
