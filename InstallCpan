@@ -10,6 +10,7 @@
 # |--------------------------------------------------------------|
 #
 
-echo "yes" | cpan
+echo "yes" | cpan -i YAML Net::HTTP Crypt::SSLeay Net::SSLeay LWP::Protocol::https
 
-echo "upgrade" | cpan
+echo "upgrade" | cpan -i YAML Net::HTTP Crypt::SSLeay Net::SSLeay LWP::Protocol::https
+echo cpan -i YAML Net::HTTP Crypt::SSLeay Net::SSLeay LWP::Protocol::https
