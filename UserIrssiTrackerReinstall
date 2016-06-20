@@ -17,6 +17,5 @@ sudo mkdir -p /home/$IRSSIUSERNAME/.irssi/scripts/AutodlIrssi/trackers/
 cd /home/$IRSSIUSERNAME/.irssi/scripts/AutodlIrssi/trackers/
 
 sudo wget -N --no-check-certificate https://github.com/autodl-community/autodl-trackers/archive/master.zip
-sudo unzip -o autodl-trackers-master.zip
-sudo rm -R autodl-trackers-master.zip
-sudo rm -R /root/UserIrssiTrackerReinstall
+sudo unzip -o master.zip
+sudo rm -R master.zip
