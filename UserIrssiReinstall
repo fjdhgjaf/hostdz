@@ -24,7 +24,7 @@ sudo rm -R /root/UserIrssiReinstall
     fi
 
  if [ ! $IRSSIVERSION ]; then
-      IRSSIVERSION="v1.53"
+      IRSSIVERSION="v1.62"
     fi
 
 
