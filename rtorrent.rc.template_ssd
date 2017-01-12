@@ -1,0 +1,98 @@
+#
+# |--------------------------------------------------------------|
+# | The script thank you for Notos (notos.korsan@gmail.com)      |
+# |--------------------------------------------------------------|
+# | The script was further developed Tiby08 (tiby0108@gmail.com) |
+# |--------------------------------------------------------------|
+#
+ 
+# Downloads Settings 
+max_uploads = 500 
+
+# maximum and minimum number of peers to connect to per torrent
+min_peers = 250
+max_peers = 500 
+ 
+# same as above but for seeding completed torrents (-1 = same as downloading) 
+min_peers_seed = -1
+max_peers_seed = -1 
+trackers.numwant.set = 400
+check_hash = no 
+
+directory = /home/<username>/downloads/manual
+session = /home/<username>/downloads/.session
+
+port_range = 99888-99888 
+port_random = yes
+
+# global upload and download rate in KiB. "0" for unlimited
+upload_rate = 0 
+download_rate = 0 
+ 
+# max mapped memory 
+pieces.memory.max.set = 16G 
+network.max_open_files.set = 65535
+network.http.max_open.set = 32
+
+dht = auto 
+dht_port = 6881
+peer_exchange = no 
+use_udp_trackers = yes
+
+schedule = watch_directory,5,5,"load_start=/home/<username>/downloads/manual/watch/*.torrent,d.delete_tied="
+schedule = low_diskspace,5,60,close_low_diskspace=5G 
+
+scgi_port = 127.0.0.1:5995 
+ 
+#encryption = allow_incoming, try_outgoing, enable_retry
+encryption = allow_incoming,try_outgoing,enable_retry
+
+# while if too high the kernel might not be able to keep the read pages 
+# in memory thus end up trashing. 
+# hash_read_ahead = 8
+ 
+# interval between attempts to check the hash, in milliseconds 
+# hash_interval = 50 
+ 
+# overworked systems might need lower values to get a decent hash checking rate 
+# hash_max_tries = 3 
+
+system.file.max_size.set = 137438953472
+
+# preload type 0 = Off, 1 = madvise, 2 = direct paging 
+pieces.preload.type.set = 0
+pieces.preload.min_size.set = 262144
+pieces.preload.min_rate.set = 5120
+network.send_buffer.size.set = 0
+network.receive_buffer.size.set = 0
+
+pieces.sync.always_safe.set = no
+pieces.sync.timeout.set = 600
+pieces.sync.timeout_safe.set = 900
+
+session.name.set =
+##session.use_lock.set = yes
+session.on_completion.set = yes
+
+##system.file.split_size.set = -1
+##system.file.split_suffix.set = .part
+
+log.open_file = "rtorrent", ~/log/rtorrent.log
+log.open_file = "tracker", ~/log/tracker.log
+log.open_file = "storage", ~/log/storage.log
+
+log.add_output = "critical", "rtorrent"
+log.add_output = "error", "rtorrent"
+
+system.umask.set = 022
+encoding_list = UTF-8
+port_open = yes
+trackers.enable = 1
+system.file.allocate.set = yes
+network.tos.set = throughput
+# Disable SSL verification
+network.http.ssl_verify_peer.set=0
+system.file_allocate.set = yes
+network.max_open_sockets.set = 65535
+
+execute = {sh,-c,/usr/bin/php /var/www/rutorrent/php/initplugins.php <username> &}
