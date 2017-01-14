@@ -1,0 +1,41 @@
+##################### FIRST LINE
+# ---------------------------
+#!/bin/bash
+# ---------------------------
+#
+# |--------------------------------------------------------------|
+# | The script thank you for Notos (notos.korsan@gmail.com)      |
+# |--------------------------------------------------------------|
+# | The script was further developed Tiby08 (tiby0108@gmail.com) |
+# |--------------------------------------------------------------|
+#
+#
+
+clear
+
+FelhNev=$1
+
+ if [ ! $FelhNev ]; then
+    echo -n "Felhasználónév: "
+      read FelhNev
+    fi
+ if [ ! $FelhNev ]; then
+     echo "Hiba, nincs név!"
+       exit 0
+    fi
+
+#Aktiv folyamatok megszuntetese
+sudo pkill -U $FelhNev
+
+#quota 0-ra allitasa
+bash quota_bbset $FelhNev 0GB
+
+#felhasznalo, jelszo es osszes fajl torlese
+sudo userdel --remove --force $FelhNev 
+sudo perl -pi -e "s/^$FelhNev\:.*\n$//g" /etc/apache2/htpasswd
+
+sudo rm -r /etc/init/rtorrent.$FelhNev.conf
+sudo rm -r /var/www/rutorrent/conf/users/$FelhNev
+sudo rm -r /etc/bbox/users/$FelhNev.info
+sudo rm -r /var/www/rutorrent/share/users/$FelhNev
+sudo rm -r /var/run/screen/S-$FelhNev

@@ -1,0 +1,64 @@
+
+##################### FIRST LINE
+# ---------------------------
+#!/bin/bash
+# ---------------------------
+#
+# | The script was created           Tiby08 (tiby0108@gmail.com) |
+# |--------------------------------------------------------------|
+# | Version info: v0.1 beta                                      |
+# |--------------------------------------------------------------|
+#
+#
+
+function _setdisk() {
+local felhnev=$1
+local diskquota=$2
+
+if [ ! $felhnev ]; then
+    echo -e -n "Username: "
+    read felhnev
+    fi
+ if [ ! $felhnev ]; then
+     echo "Error no Username!"
+       exit 0
+    fi
+if [ ! $diskquota ]; then
+    echo -e -n "Username: "
+    read diskquota
+    fi
+ if [ ! $diskquota ]; then
+     echo "Error no diskquota!"
+       exit 0
+    fi
+
+case $diskquota in
+  *TB)
+    QUOTASIZE=$(echo $diskquota|cut -d'T' -f1)
+    DISKSIZE=$(($QUOTASIZE * 1024 * 1024 * 1024))
+    setquota -u ${felhnev} ${DISKSIZE} ${DISKSIZE} 0 0 -a
+  echo "Sikeres szerkesztés!"
+  ;;
+  *GB)
+    QUOTASIZE=$(echo $diskquota|cut -d'G' -f1)
+    DISKSIZE=$(($QUOTASIZE * 1024 * 1024))
+    setquota -u ${felhnev} ${DISKSIZE} ${DISKSIZE} 0 0 -a
+  echo "Sikeres szerkesztés!"
+  ;;
+  *MB)
+    QUOTASIZE=$(echo $diskquota|cut -d'M' -f1)
+                DISKSIZE=$(($QUOTASIZE * 1024))
+                setquota -u ${felhnev} ${DISKSIZE} ${DISKSIZE} 0 0 -a
+  echo "Sikeres szerkesztés!"
+  ;;
+  *)
+    echo "================================================================================="
+    echo "Hibás szerkesztés, így használd: 10MB vagy 10GB vagy 10TB"
+    echo "=================================================================================";exit 0
+  ;;
+esac
+}
+
+username=$1
+size=$2
+_setdisk $username $size
