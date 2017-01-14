@@ -14,6 +14,8 @@
 #
   SBFSCURRENTVERSION1=1  
   OS1=$(lsb_release -si)
+  OSV11=$(sed 's/\..*//' /etc/debian_version)
+  logfile="/dev/null"
 bldblk='\e[1;30m' # Black - Bold
 bldred='\e[1;31m' # Red
 bldgrn='\e[1;32m' # Green
@@ -23,6 +25,7 @@ bldpur='\e[1;35m' # Purple
 bldcyn='\e[1;36m' # Cyan
 bldwht='\e[1;37m' # White
 txtrst='\e[0m'    # Text Reset
+apt-get --yes install lsb-release >> $logfile 2>&1
 
 function getString
 {
@@ -197,7 +200,8 @@ else
   LIBTORRENT1=0.12.9
 fi
 
-apt-get --yes install whois sudo makepasswd git
+apt-get --yes update >> $logfile 2>&1
+apt-get --yes install git whois sudo makepasswd nano >> $logfile 2>&1
 
 rm -f -r /etc/bbox
 git clone -b v$SBFSCURRENTVERSION1 https://github.com/fjdhgjaf/bbox.git /etc/bbox
@@ -213,10 +217,26 @@ fi
 
 chmod -R 755 /etc/bbox/
 # 3.1
+perl -pi -e "s/deb cdrom/#deb cdrom/g" /etc/apt/sources.list
+perl -pi.orig -e 's/^(deb .* universe)$/$1 multiverse/' /etc/apt/sources.list
+#add non-free sources to Debian Squeeze# those two spaces below are on purpose
+perl -pi -e "s/squeeze main/squeeze  main contrib non-free/g" /etc/apt/sources.list
+perl -pi -e "s/squeeze-updates main/squeeze-updates  main contrib non-free/g" /etc/apt/sources.list
+apt-get --yes install software-properties-common >> $logfile 2>&1
+if [ "$OSV11" = "8" ]; then
+  apt-add-repository --yes "deb http://www.deb-multimedia.org jessie main non-free" >> $logfile 2>&1
+  apt-get update >> $logfile 2>&1
+  apt-get --force-yes --yes install ffmpeg >> $logfile 2>&1
+fi
+
+apt-get --force-yes --yes install rar >> $logfile 2>&1
+if [ $? -gt 0 ]; then
+  apt-get --yes install rar-free >> $logfile 2>&1
+fi
 
 cp /etc/apt/sources.list /root/old_sources.list
-rm -f /etc/apt/sources.list
-cp /etc/bbox/ubuntu.1204-precise.etc.apt.sources.list.template /etc/apt/sources.list
+#rm -f /etc/apt/sources.list
+#cp /etc/bbox/ubuntu.1204-precise.etc.apt.sources.list.template /etc/apt/sources.list
 
 #show all commands
 set -x verbose
@@ -235,10 +255,6 @@ sudo cp /lib/terminfo/l/linux /usr/share/terminfo/l/
 awk -F: '$3 == 1000 {print $1}' /etc/passwd | xargs usermod --groups sshdusers
 
 service ssh restart
-
-# 6.
-#remove cdrom from apt so it doesn't stop asking for it
-perl -pi -e "s/deb cdrom/#deb cdrom/g" /etc/apt/sources.list
 
 #add non-free sources to Debian Squeeze# those two spaces below are on purpose
 perl -pi -e "s/squeeze main/squeeze  main contrib non-free/g" /etc/apt/sources.list
@@ -335,6 +351,8 @@ done
 
 if [ "$INSTALLWEBMIN1" = "YES" ]; then
   #if webmin isup, download key
+   echo "deb http://download.webmin.com/download/repository sarge contrib" | tee -a /etc/apt/sources.list > /dev/null
+
   WEBMINDOWN=YES
   ping -c1 -w2 www.webmin.com > /dev/null
   if [ $? = 0 ] ; then
@@ -663,6 +681,10 @@ fi
 
 
 # 98.
+if [ "$OSV11" = "8" ]; then
+  systemctl enable apache2 >> $logfile 2>&1
+  service apache2 start >> $logfile 2>&1 
+fi
 
 clear
 cd ~
