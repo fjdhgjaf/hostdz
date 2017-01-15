@@ -200,6 +200,9 @@ else
   LIBTORRENT1=0.12.9
 fi
 clear
+clear
+clear
+clear
 echo "Telepítés folyamatban.."
 
 apt-get --yes update >> $logfile 2>&1
