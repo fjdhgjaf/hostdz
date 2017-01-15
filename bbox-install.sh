@@ -208,7 +208,7 @@ else
   LIBTORRENT1=0.12.9
 fi
 
-echo -e "\e[1;33m# |--------------------------------------------------------------|"
+echo -e "\e[1;33m# |--------------------------------------------------------------|\e[1;35m"
 echo -e "\e[1;35m" >> $logfile
 echo -n "Telepítés folyamatban.."
 
@@ -538,13 +538,13 @@ perl -pi -e "s/\\\$this\-\>userdir \= addslash\(\\\$topDirectory\)\;/\\\$this\-\
 perl -pi -e "s/\\\$topDirectory/\\\$homeDirectory/g" /var/www/rutorrent/plugins/filemanager/settings.js.php
 
 cd /var/www/rutorrent/plugins/
-rm -r /var/www/rutorrent/plugins/fileshare
-rm -r /var/www/share
+rm -f -r /var/www/rutorrent/plugins/fileshare >> $logfile 2>&1
+rm -f -r /var/www/share >> $logfile 2>&1
 mkdir /var/www/share
-ln -s /var/www/rutorrent/plugins/fileshare/share.php /var/www/share/share.php
-ln -s /var/www/rutorrent/plugins/fileshare/share.php /var/www/share/index.php
+ln -s /var/www/rutorrent/plugins/fileshare/share.php /var/www/share/share.php >> $logfile 2>&1
+ln -s /var/www/rutorrent/plugins/fileshare/share.php /var/www/share/index.php >> $logfile 2>&1
 chown -R www-data:www-data /var/www/share
-cp /etc/bbox/rutorrent.plugins.fileshare.conf.php.template /var/www/rutorrent/plugins/fileshare/conf.php
+cp -R /etc/bbox/rutorrent.plugins.fileshare.conf.php.template /var/www/rutorrent/plugins/fileshare/conf.php >> $logfile 2>&1
 perl -pi -e "s/<servername>/$IPADDRESS1/g" /var/www/rutorrent/plugins/fileshare/conf.php
 
 # 30.
