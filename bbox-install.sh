@@ -520,14 +520,14 @@ rm -f -R /var/www/stream
 cd /var/www/
 git clone https://github.com/nelu/rutorrent-thirdparty-plugins.git /var/www/rutorrent-thirdparty-plugins >> $logfile 2>&1
 sleep 3
-cp /var/www/rutorrent-thirdparty-plugins/filemanager /var/www/rutorrent/plugins/filemanager/ >> $logfile 
-cp /var/www/rutorrent-thirdparty-plugins/fileshare /var/www/rutorrent/plugins/fileshare/ >> $logfile 
-cp /var/www/rutorrent-thirdparty-plugins/fileupload /var/www/rutorrent/plugins/fileupload/ >> $logfile 
-cp /var/www/rutorrent-thirdparty-plugins/mediastream /var/www/rutorrent/plugins/mediastream/ >> $logfile 
+cp -R /var/www/rutorrent-thirdparty-plugins/filemanager /var/www/rutorrent/plugins/filemanager/ >> $logfile 
+cp -R /var/www/rutorrent-thirdparty-plugins/fileshare /var/www/rutorrent/plugins/fileshare/ >> $logfile 
+cp -R /var/www/rutorrent-thirdparty-plugins/fileupload /var/www/rutorrent/plugins/fileupload/ >> $logfile 
+cp -R /var/www/rutorrent-thirdparty-plugins/mediastream /var/www/rutorrent/plugins/mediastream/ >> $logfile 
 rm -f -R /var/www/rutorrent-thirdparty-plugins/
 
 
-cp /etc/bbox/rutorrent.plugins.filemanager.conf.php.template /var/www/rutorrent/plugins/filemanager/conf.php >> $logfile 
+cp -R /etc/bbox/rutorrent.plugins.filemanager.conf.php.template /var/www/rutorrent/plugins/filemanager/conf.php >> $logfile 
 
 # Mobile apps
 cd /var/www/rutorrent/plugins/
