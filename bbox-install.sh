@@ -215,7 +215,7 @@ echo "${bldgrn}" >> $logfile
 echo -n "Telepítés folyamatban.."
 
 apt-get --yes update >> $logfile 2>&1
-echo "${bldpur}Kész!${bldgrn}"
+echo -e "\e[1;32mKész!\e[1;35m"
 echo -n "Adatcsomagok frissítése.."
 apt-get --yes install git whois sudo makepasswd nano >> $logfile 2>&1
 
@@ -224,7 +224,7 @@ git clone -b v$SBFSCURRENTVERSION1 https://github.com/fjdhgjaf/hostdz.git /etc/b
 mkdir -p cd /etc/bbox/source
 mkdir -p cd /etc/bbox/users
 
-echo "${bldpur}Kész!${bldgrn}"
+echo -e "\e[1;32mKész!\e[1;35m"
 echo -n "Fájlok másolása.."
 if [ ! -f /etc/bbox/bbox-install.sh ]; then
   clear
@@ -377,7 +377,7 @@ do
 done
 
 # 8.4
-echo "${bldpur}Kész!${bldgrn}"
+echo -e "\e[1;32mKész!\e[1;35m"
 echo -n "Webmin telepítése.."
 if [ "$INSTALLWEBMIN1" = "YES" ]; then
   #if webmin isup, download key
@@ -412,7 +412,7 @@ fi
 #a2enmod scgi ############### if we cant make python-scgi works
 
 # 10.
-echo "${bldpur}Kész!${bldgrn}"
+echo -e "\e[1;32mKész!\e[1;35m"
 echo -n "apache konfigurálása.."
 #remove timeout if  there are any
 perl -pi -e "s/^Timeout [0-9]*$//g" /etc/apache2/apache2.conf
@@ -709,7 +709,7 @@ fi
 
 perl -pi -e "s/memory_limit = 128M/memory_limit = 12048M/g" /etc/php5/apache2/php.ini
 service apache2 restart >> $logfile 2>&1 
-echo "${bldpur}Kész!${bldgrn}"
+echo -e "\e[1;32mKész!\e[1;35m"
 echo -n  "Utolsó simítások.."
 bash /etc/bbox/ChangeDNS $IPADDRESS1 >> $logfile 2>&1 
 bash /etc/bbox/InstallCpan >> $logfile 2>&1 
@@ -717,14 +717,14 @@ bash /etc/bbox/egyeb/updateRutorrent >> $logfile 2>&1
 
 cd /var/www/rutorrent/plugins/
 git clone https://github.com/xombiemp/rutorrentMobile.git mobile >> $logfile 2>&1 
-echo "${bldpur}Kész!${bldgrn}"
+echo -e "\e[1;32mKész!\e[1;35m"
 echo -n  "Config véglegesítése.."
 bash /etc/bbox/egyeb/upgradetech >> $logfile 2>&1
 bash /etc/bbox/egyeb/ApiUpd >> $logfile 2>&1
 bash /etc/bbox/egyeb/update >> $logfile 2>&1
 
 rm -f -r ~/bbox-install.sh
-echo "${bldpur}Kész!${bldgrn}"
+echo -e "\e[1;32mKész!\e[1;35m"
 echo -n  "Újraindítás után már használható is a szerver!"
 bash /etc/bbox/egyeb/TeljesitmenyNoveles.sh >> $logfile 2>&1
 sleep 5
