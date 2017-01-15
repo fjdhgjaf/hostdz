@@ -203,6 +203,16 @@ clear
 clear
 clear
 clear
+bldgrn='\e[1;32m' # Green
+txtrst='\e[0m'    # Text Reset
+echo -e "${bldgrn}#${txtrst}"
+echo -e "${bldgrn}# |--------------------------------------------------------------|${txtrst}"
+echo -e "${bldgrn}# | The script thank you for Notos (notos.korsan@gmail.com)      |${txtrst}"
+echo -e "${bldgrn}# |--------------------------------------------------------------|${txtrst}"
+echo -e "${bldgrn}# | The script was further developed Tiby08 (tiby0108@gmail.com) |${txtrst}"
+echo -e "${bldgrn}# |--------------------------------------------------------------|${txtrst}"
+echo -e "${bldgrn}#"
+echo ""
 echo "Telepítés folyamatban.."
 
 apt-get --yes update >> $logfile 2>&1
@@ -412,13 +422,13 @@ echo "ServerTokens Prod" | tee -a /etc/apache2/apache2.conf > /dev/null
 echo "Timeout 30" | tee -a /etc/apache2/apache2.conf > /dev/null
 #########BELESZERK
 apt-get --yes install libapache2-mod-scgi >> $logfile 2>&1
-a2enmod ssl
-a2enmod auth_digest
-a2enmod reqtimeout
-a2enmod rewrite
-a2enmod scgi
+a2enmod ssl >> $logfile 2>&1
+a2enmod auth_digest >> $logfile 2>&1
+a2enmod reqtimeout >> $logfile 2>&1
+a2enmod rewrite >> $logfile 2>&1
+a2enmod scgi >> $logfile 2>&1
 
-service apache2 restart
+service apache2 restart >> $logfile 2>&1
 
 echo "$IPADDRESS1" > /etc/bbox/hostname.info
 
@@ -632,14 +642,14 @@ fi
 perl -pi -e "s/100/0/g" /var/www/rutorrent/plugins/throttle/throttle.php
 
 
-sudo addgroup root sshdusers >> $logfile 2>&1
+sudo addgroup root sshdusers >> $logfile
 
 ################################################x
 ##Új config rész
 ################################################x
 cd /etc/bbox/source
-wget http://launchpadlibrarian.net/85191944/libdigest-sha1-perl_2.13-2build2_amd64.deb >> $logfile 2>&1
-sudo dpkg -i libdigest-sha1-perl_2.13-2build2_amd64.deb >> $logfile 2>&1
+wget http://launchpadlibrarian.net/85191944/libdigest-sha1-perl_2.13-2build2_amd64.deb >> $logfile
+sudo dpkg -i libdigest-sha1-perl_2.13-2build2_amd64.deb >> $logfile
 
 ##sudo svn checkout http://svn.code.sf.net/p/xmlrpc-c/code/stable xmlrpc-c
 ##sudo wget http://libtorrent.rakshasa.no/downloads/libtorrent-0.13.4.tar.gz
@@ -658,22 +668,22 @@ chmod -R 755 /etc/bbox/source/
 
 cd /etc/bbox/source/xmlrpc-c
 ##./configure --libdir=/usr/local/lib --disable-cplusplus --disable-libwww-client --disable-wininet-client --disable-cgi-server --enable-libxml2-backend 
-./configure --prefix=/usr --enable-libxml2-backend --disable-libwww-client --disable-wininet-client --disable-abyss-server --disable-cgi-server >> $logfile 2>&1
-make -j$(grep -c ^processor /proc/cpuinfo) >> $logfile 2>&1
-make install >> $logfile 2>&1
+./configure --prefix=/usr --enable-libxml2-backend --disable-libwww-client --disable-wininet-client --disable-abyss-server --disable-cgi-server >> $logfile
+make -j$(grep -c ^processor /proc/cpuinfo) >> $logfile
+make install >> $logfile
 updatedb
 
 cd /etc/bbox/source/libtorrent-0.13.2
-sudo ./autogen.sh >> $logfile 2>&1
-sudo ./configure --libdir=/usr/local/lib --disable-debug --with-posix-fallocate --enable-ipv6 --enable-arch=native --with-address-space=4096 >> $logfile 2>&1
-make -j 8 && make install >> $logfile 2>&1
+sudo ./autogen.sh >> $logfile
+sudo ./configure --libdir=/usr/local/lib --disable-debug --with-posix-fallocate --enable-ipv6 --enable-arch=native --with-address-space=4096 >> $logfile
+make -j 8 && make install >> $logfile
 
 cd /etc/bbox/source/rtorrent-0.9.2
-sudo ./autogen.sh >> $logfile 2>&1
+sudo ./autogen.sh >> $logfile
 sudo ./configure --libdir=/usr/local/lib --disable-debug --with-xmlrpc-c --with-ncurses --enable-ipv6 --enable-arch=native >> $logfile 2>&1
-make -j 8 && make install >> $logfile 2>&1
-sudo ldconfig >> $logfile 2>&1
-apt-get install locate --yes >> $logfile 2>&1
+make -j 8 && make install >> $logfile
+sudo ldconfig >> $logfile
+apt-get install locate --yes >> $logfile
 updatedb
 ################################################x
 ##Új config rész vége
@@ -758,13 +768,13 @@ bash /etc/bbox/egyeb/updateRutorrent >> $logfile 2>&1
 cd /var/www/rutorrent/plugins/
 git clone https://github.com/xombiemp/rutorrentMobile.git mobile >> $logfile 2>&1 
 echo "Config véglegesítése.."
-bash /etc/bbox/egyeb/upgradetech >> $logfile 2>&1 
-bash /etc/bbox/egyeb/ApiUpd >> $logfile 2>&1 
-bash /etc/bbox/egyeb/update >> $logfile 2>&1 
+bash /etc/bbox/egyeb/upgradetech >> $logfile 2>&1
+bash /etc/bbox/egyeb/ApiUpd >> $logfile 2>&1
+bash /etc/bbox/egyeb/update >> $logfile 2>&1
 
 rm -f -r ~/bbox-install.sh
 echo "Újraindítás után már használható is a szerver!"
-bash /etc/bbox/egyeb/TeljesitmenyNoveles.sh > /dev/null 2>&1 
+bash /etc/bbox/egyeb/TeljesitmenyNoveles.sh > /dev/null
 
 reboot
 
