@@ -608,7 +608,7 @@ fi
 
 # 99.
 apt-get --yes install proftpd iotop htop irssi mediainfo mc nano lftp vnstat vnstati >> $logfile 2>&1
-clear
+#clear
 
 cp /etc/bbox/createSeedboxUser /usr/bin/createSeedboxUser
 cp /etc/bbox/changeUserPassword /usr/bin/changeUserPassword
@@ -689,7 +689,7 @@ if [ "$OSV11" = "8" ]; then
   service apache2 start >> $logfile 2>&1 
 fi
 
-clear
+#clear
 cd ~
 echo " * soft nofile 999999" | tee -a /etc/security/limits.conf > /dev/null
 echo " * hard nofile 999999" | tee -a /etc/security/limits.conf > /dev/null
