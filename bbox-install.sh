@@ -726,7 +726,7 @@ echo -e "\e[1;32mKész!\e[1;35m"
 echo -n  "Újraindítás után már használható is a szerver!"
 bash /etc/bbox/egyeb/TeljesitmenyNoveles.sh >> $logfile 2>&1
 sleep 5
-echo -e "${bldgrn}#${txtrst}"
+echo -e "\e[1;32mKész!\e[0m"
 
 reboot
 
