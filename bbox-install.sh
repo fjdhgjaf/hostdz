@@ -203,15 +203,17 @@ fi
 apt-get --yes update >> $logfile 2>&1
 apt-get --yes install git whois sudo makepasswd nano >> $logfile 2>&1
 
-rm -f -r /etc/bbox
-git clone -b v$SBFSCURRENTVERSION1 https://github.com/fjdhgjaf/bbox.git /etc/bbox
+rm -f -r /etc/bbox >> $logfile 2>&1
+git clone -b v$SBFSCURRENTVERSION1 https://github.com/fjdhgjaf/bbox.git /etc/bbox >> $logfile 2>&1
 mkdir -p cd /etc/bbox/source
 mkdir -p cd /etc/bbox/users
-
+echo "Telepítés folyamatban.."
 if [ ! -f /etc/bbox/bbox-install.sh ]; then
   clear
   echo Looks like somethig is wrong, this script was not able to download its whole git repository.
-  set -e
+  echo  "git could not be installed :/ "
+  echo  "Do :   apt-get update && apt-get --yes install git "
+  echo  " Then run script again. "
   exit 1
 fi
 
@@ -263,8 +265,8 @@ perl -pi -e "s/squeeze-updates main/squeeze-updates  main contrib non-free/g" /e
 # 7.
 # update and upgrade packages
 
-apt-get --yes update
-apt-get --yes upgrade
+apt-get --yes update >> $logfile 2>&1
+apt-get --yes upgrade >> $logfile 2>&1
 
 # 8.
 #install all needed packages
@@ -291,20 +293,20 @@ if [ $? -gt 0 ]; then
   set -e
   exit 1
 fi
-apt-get --yes install zip
-apt-get --yes install python-software-properties
+apt-get --yes install zip >> $logfile 2>&1
+apt-get --yes install python-software-properties >> $logfile 2>&1
 
-apt-get --yes install rar
+apt-get --yes install rar >> $logfile 2>&1
 if [ $? -gt 0 ]; then
-  apt-get --yes install rar-free
+  apt-get --yes install rar-free >> $logfile 2>&1
 fi
 
-apt-get --yes install unrar
+apt-get --yes install unrar >> $logfile 2>&1
 if [ $? -gt 0 ]; then
-  apt-get --yes install unrar-free
+  apt-get --yes install unrar-free >> $logfile 2>&1
 fi
 
-apt-get --yes install dnsutils
+apt-get --yes install dnsutils >> $logfile 2>&1
 
 if [ "$CHROOTJAIL1" = "YES" ]; then
   cd /etc/bbox
@@ -317,9 +319,9 @@ fi
 
 # 8.1 additional packages for Ubuntu
 # this is better to be apart from the others
-apt-get --yes install php5-fpm
-apt-get --yes install php5-xcache
-apt-get --yes install landscape-common
+apt-get --yes install php5-fpm >> $logfile 2>&1
+apt-get --yes install php5-xcache >> $logfile 2>&1
+apt-get --yes install landscape-common >> $logfile 2>&1
 
 #Check if its Debian an do a sysvinit by upstart replacement:
 
@@ -335,13 +337,13 @@ echo "export PATH" | tee -a /etc/profile > /dev/null
 echo "PATH=$PATH:/etc/bbox:/sbin" | tee -a /root/.bashrc > /dev/null
 echo "export PATH" | tee -a /root/.bashrc > /dev/null
 
-rm -f /etc/bbox/ports.txt
+rm -f /etc/bbox/ports.txt >> $logfile 2>&1
 for i in $(seq 51101 51999)
 do
   echo "$i" | tee -a /etc/bbox/ports.txt > /dev/null
 done
 
-rm -f /etc/bbox/rpc.txt
+rm -f /etc/bbox/rpc.txt >> $logfile 2>&1
 for i in $(seq 2 1000)
 do
   echo "RPC$i"  | tee -a /etc/bbox/rpc.txt > /dev/null
@@ -365,13 +367,13 @@ if [ "$INSTALLWEBMIN1" = "YES" ]; then
   fi
 
   if [ "$WEBMINDOWN" = "NO" ]; then
-    apt-get --yes update
-    apt-get --yes install webmin
+    apt-get --yes update >> $logfile 2>&1
+    apt-get --yes install webmin >> $logfile 2>&1
   fi
 fi
 
 if [ "$INSTALLFAIL2BAN1" = "YES" ]; then
-  apt-get --yes install fail2ban
+  apt-get --yes install fail2ban >> $logfile 2>&1
   cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.conf.original
   cp /etc/bbox/etc.fail2ban.jail.conf.template /etc/fail2ban/jail.conf
   fail2ban-client reload
@@ -394,7 +396,7 @@ echo "ServerSignature Off" | tee -a /etc/apache2/apache2.conf > /dev/null
 echo "ServerTokens Prod" | tee -a /etc/apache2/apache2.conf > /dev/null
 echo "Timeout 30" | tee -a /etc/apache2/apache2.conf > /dev/null
 #########BELESZERK
-apt-get --yes install libapache2-mod-scgi
+apt-get --yes install libapache2-mod-scgi >> $logfile 2>&1
 a2enmod ssl
 a2enmod auth_digest
 a2enmod reqtimeout
