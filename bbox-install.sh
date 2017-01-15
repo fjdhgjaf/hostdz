@@ -365,7 +365,7 @@ do
 done
 
 # 8.4
-
+echo "Webmin telepítése.."
 if [ "$INSTALLWEBMIN1" = "YES" ]; then
   #if webmin isup, download key
    echo "deb http://download.webmin.com/download/repository sarge contrib" | tee -a /etc/apt/sources.list > /dev/null
@@ -399,7 +399,7 @@ fi
 #a2enmod scgi ############### if we cant make python-scgi works
 
 # 10.
-
+echo "apache konfigurálása.."
 #remove timeout if  there are any
 perl -pi -e "s/^Timeout [0-9]*$//g" /etc/apache2/apache2.conf
 
@@ -432,10 +432,10 @@ export IPADDRESS1
 echo "$NEWUSER1" > /etc/bbox/mainuser.info
 echo "$CERTPASS1" > /etc/bbox/certpass.info
 
-bash /etc/bbox/createOpenSSLCACertificate
+bash /etc/bbox/createOpenSSLCACertificate >> $logfile 2>&1
 
 mkdir -p /etc/ssl/private/
-openssl req -x509 -nodes -days 365 -newkey rsa:1024 -keyout /etc/ssl/private/vsftpd.pem -out /etc/ssl/private/vsftpd.pem -config /etc/bbox/ssl/CA/caconfig.cnf
+openssl req -x509 -nodes -days 365 -newkey rsa:1024 -keyout /etc/ssl/private/vsftpd.pem -out /etc/ssl/private/vsftpd.pem -config /etc/bbox/ssl/CA/caconfig.cnf >> $logfile 2>&1
 
 # 13.
 if [ "$OSV1" = "14.04" ] || [ "$OSV1" = "14.10" ] || [ "$OSV1" = "15.04" ] || [ "$OSV1" = "15.10" ] || [ "$OSV1" = "16.04" ] || [ "$OSV11" = "8" ]; then
