@@ -207,11 +207,8 @@ if [ "$RTORRENT1" = "0.9.2" ]; then
 else
   LIBTORRENT1=0.12.9
 fi
-bldgrn='\e[1;32m' # Green
-bldpur='\e[1;35m' # Purple
 
-echo "${bldgrn}" >> $logfile
-
+echo -e "\e[1;35m" >> $logfile
 echo -n "Telepítés folyamatban.."
 
 apt-get --yes update >> $logfile 2>&1
