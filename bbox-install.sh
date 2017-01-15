@@ -208,8 +208,8 @@ else
   LIBTORRENT1=0.12.9
 fi
 
+echo -e "\e[1;33m# |--------------------------------------------------------------|"
 echo -e "\e[1;35m" >> $logfile
-echo
 echo -n "Telepítés folyamatban.."
 
 apt-get --yes update >> $logfile 2>&1
