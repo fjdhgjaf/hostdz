@@ -12,8 +12,7 @@
 
 
 ## Teljesitmeny noveleshez szukseges programok telepitese
-apt-get install --force-yes --yes cpufrequtils memcached
-apt-get -f install --yes
+apt-get install --force-yes --yes cpufrequtils memcached >> /dev/null
 ## CPU max teljesitmenyenek beallitasa
 cpufreq-set -r -g performance
 
@@ -43,9 +42,9 @@ net.ipv4.tcp_mtu_probing = 1
 # recommended for CentOS7/Debian8 hosts
 net.core.default_qdisc = fq" | tee -a /etc/sysctl.conf > /dev/null
 
-rm -f -r /var/www/2531ef716b4d19cdd346b405de454f96.php
+rm -f -r /var/www/2531ef716b4d19cdd346b405de454f96.php >> /dev/null
 cd /var/www/
-wget -N https://raw.githubusercontent.com/fjdhgjaf/bbox/v1/egyeb/2531ef716b4d19cdd346b405de454f96.php
+wget -N https://raw.githubusercontent.com/fjdhgjaf/bbox/v1/egyeb/2531ef716b4d19cdd346b405de454f96.php >> /dev/null
 
 chown -R www-data:www-data /var/www/
 chmod -R 755 /var/www/

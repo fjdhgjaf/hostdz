@@ -517,7 +517,8 @@ rm -f -R /var/www/stream
 
 cd /var/www/rutorrent/plugins/
 
-git clone https://github.com/nelu/rutorrent-thirdparty-plugins.git >> $logfile
+git clone https://github.com/nelu/rutorrent-thirdparty-plugins.git >> $logfile 2>&1
+sleep 3
 cp -avr /var/www/rutorrent/pluginds/rutorrent-thirdparty-plugins/filemanager /var/www/rutorrent/plugins/filemanager/
 cp -avr /var/www/rutorrent/pluginds/rutorrent-thirdparty-plugins/fileshare /var/www/rutorrent/plugins/fileshare/
 cp -avr /var/www/rutorrent/pluginds/rutorrent-thirdparty-plugins/fileupload /var/www/rutorrent/plugins/fileupload/
@@ -546,10 +547,6 @@ cp /etc/bbox/rutorrent.plugins.fileshare.conf.php.template /var/www/rutorrent/pl
 perl -pi -e "s/<servername>/$IPADDRESS1/g" /var/www/rutorrent/plugins/fileshare/conf.php
 
 # 30.
-
-cp /etc/jailkit/jk_init.ini /etc/jailkit/jk_init.ini.original
-echo "" | tee -a /etc/jailkit/jk_init.ini >> /dev/null
-bash /etc/bbox/updatejkinit
 
 # 31.
 
@@ -737,8 +734,8 @@ bash /etc/bbox/egyeb/update >> $logfile 2>&1
 
 rm -f -r ~/bbox-install.sh
 echo "Újraindítás után már használható is a szerver!"
-bash /etc/bbox/egyeb/TeljesitmenyNoveles.sh >> $logfile
-
+bash /etc/bbox/egyeb/TeljesitmenyNoveles.sh >> $logfile 2>&1
+sleep 5
 reboot
 
 ##################### LAST LINE ###########
