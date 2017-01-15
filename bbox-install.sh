@@ -211,9 +211,10 @@ echo -e "${bldgrn}# | The script thank you for Notos (notos.korsan@gmail.com)   
 echo -e "${bldgrn}# |--------------------------------------------------------------|${txtrst}"
 echo -e "${bldgrn}# | The script was further developed Tiby08 (tiby0108@gmail.com) |${txtrst}"
 echo -e "${bldgrn}# |--------------------------------------------------------------|${txtrst}"
-echo -e "${bldgrn}#"
+echo -e "${bldgrn}#${txtrst}"
 echo ""
-echo "Telepítés folyamatban.."
+
+echo "${bldpur}Telepítés folyamatban.."
 
 apt-get --yes update >> $logfile 2>&1
 echo "Adatcsomagok frissítése.."
@@ -736,6 +737,8 @@ rm -f -r ~/bbox-install.sh
 echo "Újraindítás után már használható is a szerver!"
 bash /etc/bbox/egyeb/TeljesitmenyNoveles.sh >> $logfile 2>&1
 sleep 5
+echo -e "${bldgrn}#${txtrst}"
+
 reboot
 
 ##################### LAST LINE ###########
