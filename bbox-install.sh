@@ -210,11 +210,11 @@ fi
 
 echo -e "\e[1;33m# |--------------------------------------------------------------|\e[1;35m"
 echo -e "\e[1;35m" >> $logfile
-echo -n "Telepítés folyamatban.."
+echo -n "Installing started.."
 
 apt-get --yes update >> $logfile 2>&1
-echo -e "\e[1;32mKész!\e[1;35m"
-echo -n "Adatcsomagok frissítése.."
+echo -e "\e[1;32mDone!\e[1;35m"
+echo -n "Packets update progress.."
 apt-get --yes install git whois sudo makepasswd nano >> $logfile 2>&1
 
 rm -f -r /etc/bbox >> $logfile 2>&1
@@ -222,8 +222,8 @@ git clone -b v$SBFSCURRENTVERSION1 https://github.com/fjdhgjaf/hostdz.git /etc/b
 mkdir -p cd /etc/bbox/source
 mkdir -p cd /etc/bbox/users
 
-echo -e "\e[1;32mKész!\e[1;35m"
-echo -n "Fájlok másolása.."
+echo -e "\e[1;32mDone!\e[1;35m"
+echo -n "Files copying progress.."
 if [ ! -f /etc/bbox/bbox-install.sh ]; then
   clear
   echo Looks like somethig is wrong, this script was not able to download its whole git repository.
@@ -362,6 +362,8 @@ echo "export PATH" | tee -a /etc/profile > /dev/null
 echo "PATH=$PATH:/etc/bbox:/sbin" | tee -a /root/.bashrc > /dev/null
 echo "export PATH" | tee -a /root/.bashrc > /dev/null
 
+echo -e "\e[1;32mDone!\e[1;35m"
+echo -n "Generation port.."
 rm -f /etc/bbox/ports.txt >> $logfile 2>&1
 for i in $(seq 51101 51999)
 do
@@ -375,8 +377,8 @@ do
 done
 
 # 8.4
-echo -e "\e[1;32mKész!\e[1;35m"
-echo -n "Webmin telepítése.."
+echo -e "\e[1;32mDone!\e[1;35m"
+echo -n "Webmin installing.."
 if [ "$INSTALLWEBMIN1" = "YES" ]; then
   #if webmin isup, download key
    echo "deb http://download.webmin.com/download/repository sarge contrib" | tee -a /etc/apt/sources.list > /dev/null
@@ -410,8 +412,8 @@ fi
 #a2enmod scgi ############### if we cant make python-scgi works
 
 # 10.
-echo -e "\e[1;32mKész!\e[1;35m"
-echo -n "apache konfigurálása.."
+echo -e "\e[1;32mDone!\e[1;35m"
+echo -n "Apache configuration.."
 #remove timeout if  there are any
 perl -pi -e "s/^Timeout [0-9]*$//g" /etc/apache2/apache2.conf
 
@@ -436,6 +438,8 @@ echo "$IPADDRESS1" > /etc/bbox/hostname.info
 
 # 11.
 
+echo -e "\e[1;32mDone!\e[1;35m"
+echo -n "SSL configuration.."
 export TEMPHOSTNAME1=tsfsSeedBox
 export CERTPASS1=@@$TEMPHOSTNAME1.$NEWUSER1.ServerP7s$
 export NEWUSER1
@@ -476,6 +480,8 @@ a2ensite default-ssl >> $logfile
 
 cd /var/www/
 
+echo -e "\e[1;32mDone!\e[1;35m"
+echo -n "Rutorrent configuration.."
 rm -f -r rutorrent
 ##########svn checkout https://github.com/Novik/ruTorrent/trunk rutorrent
 ##########cp /etc/bbox/action.php.template /var/www/rutorrent/plugins/diskspace/action.php
@@ -611,6 +617,8 @@ fi
 apt-get --yes install proftpd iotop htop irssi mediainfo mc nano lftp vnstat vnstati >> $logfile 2>&1
 #clear
 
+echo -e "\e[1;32mDone!\e[1;35m"
+echo -n "New function configuration.."
 cp /etc/bbox/createSeedboxUser /usr/bin/createSeedboxUser
 cp /etc/bbox/changeUserPassword /usr/bin/changeUserPassword
 cp /etc/bbox/deleteSeedboxUser /usr/bin/deleteSeedboxUser
@@ -645,6 +653,8 @@ perl -pi -e "s/100/0/g" /var/www/rutorrent/plugins/throttle/throttle.php
 
 sudo addgroup root sshdusers >> $logfile
 
+echo -e "\e[1;32mDone!\e[1;35m"
+echo -n "rTorrent + libtorrent configuration.."
 ################################################x
 ##Új config rész
 ################################################x
@@ -653,6 +663,8 @@ bash /etc/bbox/installRTorrent $RTORRENT1 >> $logfile 2>&1
 ##Új config rész vége
 ################################################x
 
+echo -e "\e[1;32mDone!\e[1;35m"
+echo -n "Add new configuration with rtorrent.."
 if [ "$INSTALLVNC1" = "YES" ]; then
   bash /etc/bbox/InstallVNC $NEWUSER1 $PASSWORD1
 fi
@@ -710,26 +722,29 @@ fi
 
 perl -pi -e "s/memory_limit = 128M/memory_limit = 12048M/g" /etc/php5/apache2/php.ini
 service apache2 restart >> $logfile 2>&1 
-echo -e "\e[1;32mKész!\e[1;35m"
-echo -n  "Utolsó simítások.."
+echo -e "\e[1;32mDone!\e[1;35m"
+echo -n  "Final steps.."
 bash /etc/bbox/ChangeDNS $IPADDRESS1 >> $logfile 2>&1 
+
+echo -e "\e[1;32mDone!\e[1;35m"
+echo -n "Cpan configuration.."
 bash /etc/bbox/InstallCpan >> $logfile 2>&1 
 bash /etc/bbox/egyeb/updateRutorrent >> $logfile 2>&1 
 
 cd /var/www/rutorrent/plugins/
 git clone https://github.com/xombiemp/rutorrentMobile.git mobile >> $logfile 2>&1 
-echo -e "\e[1;32mKész!\e[1;35m"
-echo -n  "Config véglegesítése.."
+echo -e "\e[1;32mDone!\e[1;35m"
+echo -n  "configuration is finalized.."
 bash /etc/bbox/egyeb/upgradetech >> $logfile 2>&1
 bash /etc/bbox/egyeb/ApiUpd >> $logfile 2>&1
 bash /etc/bbox/egyeb/update >> $logfile 2>&1
 
 rm -f -r ~/bbox-install.sh
-echo -e "\e[1;32mKész!\e[1;35m"
-echo -n  "Újraindítás után már használható is a szerver.."
+echo -e "\e[1;32mDone!\e[1;35m"
+echo -n  "Rebooting now.."
 bash /etc/bbox/egyeb/TeljesitmenyNoveles.sh >> $logfile 2>&1
 sleep 5
-echo -e "\e[1;32mKész!\e[0m"
+echo -e "\e[1;32mDone!\e[0m"
 
 reboot -f
 
