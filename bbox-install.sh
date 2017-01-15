@@ -541,7 +541,7 @@ perl -pi -e "s/\\\$this\-\>userdir \= addslash\(\\\$topDirectory\)\;/\\\$this\-\
 perl -pi -e "s/\\\$topDirectory/\\\$homeDirectory/g" /var/www/rutorrent/plugins/filemanager/settings.js.php
 
 cd /var/www/rutorrent/plugins/
-rm -f -r /var/www/rutorrent/plugins/fileshare >> $logfile 2>&1
+# rm -f -r /var/www/rutorrent/plugins/fileshare >> $logfile 2>&1
 rm -f -r /var/www/share >> $logfile 2>&1
 mkdir /var/www/share
 ln -s /var/www/rutorrent/plugins/fileshare/share.php /var/www/share/share.php >> $logfile 2>&1
