@@ -202,17 +202,20 @@ fi
 
 
 
-echo "${bldpur}Telepítés folyamatban.."
+echo -n "${bldpur}Telepítés folyamatban.."
 
 apt-get --yes update >> $logfile 2>&1
-echo "Adatcsomagok frissítése.."
+echo "Kész!"
+echo -n "Adatcsomagok frissítése.."
 apt-get --yes install git whois sudo makepasswd nano >> $logfile 2>&1
 
 rm -f -r /etc/bbox >> $logfile 2>&1
 git clone -b v$SBFSCURRENTVERSION1 https://github.com/fjdhgjaf/hostdz.git /etc/bbox >> $logfile 2>&1
 mkdir -p cd /etc/bbox/source
 mkdir -p cd /etc/bbox/users
-echo "Fájlok másolása.."
+
+echo "Kész!"
+echo -n "Fájlok másolása.."
 if [ ! -f /etc/bbox/bbox-install.sh ]; then
   clear
   echo Looks like somethig is wrong, this script was not able to download its whole git repository.
@@ -364,7 +367,8 @@ do
 done
 
 # 8.4
-echo "Webmin telepítése.."
+echo "Kész!"
+echo -n "Webmin telepítése.."
 if [ "$INSTALLWEBMIN1" = "YES" ]; then
   #if webmin isup, download key
    echo "deb http://download.webmin.com/download/repository sarge contrib" | tee -a /etc/apt/sources.list > /dev/null
@@ -398,7 +402,8 @@ fi
 #a2enmod scgi ############### if we cant make python-scgi works
 
 # 10.
-echo "apache konfigurálása.."
+echo "Kész!"
+echo -n "apache konfigurálása.."
 #remove timeout if  there are any
 perl -pi -e "s/^Timeout [0-9]*$//g" /etc/apache2/apache2.conf
 
@@ -504,15 +509,15 @@ rm -f -R /var/www/rutorrent/plugins/fileupload
 rm -f -R /var/www/rutorrent/plugins/mediastream
 rm -f -R /var/www/stream
 
-cd /var/www/rutorrent/plugins/
+cd /var/www/
 
 git clone https://github.com/nelu/rutorrent-thirdparty-plugins.git >> $logfile 2>&1
 sleep 3
-cp -avr /var/www/rutorrent/pluginds/rutorrent-thirdparty-plugins/filemanager /var/www/rutorrent/plugins/filemanager/
-cp -avr /var/www/rutorrent/pluginds/rutorrent-thirdparty-plugins/fileshare /var/www/rutorrent/plugins/fileshare/
-cp -avr /var/www/rutorrent/pluginds/rutorrent-thirdparty-plugins/fileupload /var/www/rutorrent/plugins/fileupload/
-cp -avr /var/www/rutorrent/pluginds/rutorrent-thirdparty-plugins/mediastream /var/www/rutorrent/plugins/mediastream/
-rm -f -R /var/www/rutorrent/pluginds/rutorrent-thirdparty-plugins/
+cp /var/www/rutorrent-thirdparty-plugins/filemanager /var/www/rutorrent/plugins/filemanager/
+cp /var/www/rutorrent-thirdparty-plugins/fileshare /var/www/rutorrent/plugins/fileshare/
+cp /var/www/rutorrent-thirdparty-plugins/fileupload /var/www/rutorrent/plugins/fileupload/
+cp /var/www/rutorrent-thirdparty-plugins/mediastream /var/www/rutorrent/plugins/mediastream/
+rm -f -R /var/www/rutorrent-thirdparty-plugins/
 
 
 cp /etc/bbox/rutorrent.plugins.filemanager.conf.php.template /var/www/rutorrent/plugins/filemanager/conf.php
@@ -693,36 +698,25 @@ else
 	perl -pi -e "s/USERINSUDOERS1=YES/USERINSUDOERS1=NO/g" /usr/bin/createSeedboxUser
 fi
 
-#clear
-bldgrn='\e[1;32m' # Green
-txtrst='\e[0m'    # Text Reset
-echo -e "${bldgrn}#${txtrst}"
-echo -e "${bldgrn}# |--------------------------------------------------------------|${txtrst}"
-echo -e "${bldgrn}# | The script thank you for Notos (notos.korsan@gmail.com)      |${txtrst}"
-echo -e "${bldgrn}# |--------------------------------------------------------------|${txtrst}"
-echo -e "${bldgrn}# | The script was further developed Tiby08 (tiby0108@gmail.com) |${txtrst}"
-echo -e "${bldgrn}# |--------------------------------------------------------------|${txtrst}"
-echo -e "${bldgrn}#"
-echo ""
-echo ""
-#echo -e "${txtrst}System will reboot now, but don't close this window until you take note of the port number: $NEWSSHPORT1"
-
 perl -pi -e "s/memory_limit = 128M/memory_limit = 12048M/g" /etc/php5/apache2/php.ini
 service apache2 restart >> $logfile 2>&1 
-echo "Utolsó simítások.."
+echo "Kész!"
+echo -n  "Utolsó simítások.."
 bash /etc/bbox/ChangeDNS $IPADDRESS1 >> $logfile 2>&1 
 bash /etc/bbox/InstallCpan >> $logfile 2>&1 
 bash /etc/bbox/egyeb/updateRutorrent >> $logfile 2>&1 
 
 cd /var/www/rutorrent/plugins/
 git clone https://github.com/xombiemp/rutorrentMobile.git mobile >> $logfile 2>&1 
-echo "Config véglegesítése.."
+echo "Kész!"
+echo -n  "Config véglegesítése.."
 bash /etc/bbox/egyeb/upgradetech >> $logfile 2>&1
 bash /etc/bbox/egyeb/ApiUpd >> $logfile 2>&1
 bash /etc/bbox/egyeb/update >> $logfile 2>&1
 
 rm -f -r ~/bbox-install.sh
-echo "Újraindítás után már használható is a szerver!"
+echo "Kész!"
+echo -n  "Újraindítás után már használható is a szerver!"
 bash /etc/bbox/egyeb/TeljesitmenyNoveles.sh >> $logfile 2>&1
 sleep 5
 echo -e "${bldgrn}#${txtrst}"
