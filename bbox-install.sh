@@ -141,13 +141,13 @@ bldpur='\e[1;35m' # Purple
 bldcyn='\e[1;36m' # Cyan
 bldwht='\e[1;37m' # White
 txtrst='\e[0m'    # Text Reset
-echo -e "${txtylw}#${txtrst}"
-   echo -e "${txtylw}# |--------------------------------------------------------------|${txtrst}"
-   echo -e "${txtylw}# | The script thank you for Notos (notos.korsan@gmail.com)      |${txtrst}"
-   echo -e "${txtylw}# |--------------------------------------------------------------|${txtrst}"
-   echo -e "${txtylw}# | The script was further developed Tiby08 (tiby0108@gmail.com) |${txtrst}"
-   echo -e "${txtylw}# |--------------------------------------------------------------|${txtrst}"
-echo -e "${txtylw}#${txtrst}"
+echo -e "\e[1;33m#${txtrst}"
+   echo -e "\e[1;33m# |--------------------------------------------------------------|"
+   echo -e "# | The script thank you for Notos (notos.korsan@gmail.com)      |"
+   echo -e "# |--------------------------------------------------------------|"
+   echo -e "# | The script was further developed Tiby08 (tiby0108@gmail.com) |"
+   echo -e "# |--------------------------------------------------------------|"
+echo -e "#${txtrst}"
 echo
 getString NO  "SeedBox username:" NEWUSER1 $1
 getString NO "SeedBox user($NEWUSER1) password:" PASSWORD1 $2
@@ -209,6 +209,7 @@ else
 fi
 
 echo -e "\e[1;35m" >> $logfile
+echo
 echo -n "Telepítés folyamatban.."
 
 apt-get --yes update >> $logfile 2>&1
