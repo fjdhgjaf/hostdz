@@ -199,6 +199,7 @@ if [ "$RTORRENT1" = "0.9.2" ]; then
 else
   LIBTORRENT1=0.12.9
 fi
+clear
 echo "Telepítés folyamatban.."
 
 apt-get --yes update >> $logfile 2>&1
@@ -256,7 +257,7 @@ echo "" | tee -a /etc/ssh/sshd_config > /dev/null
 echo "UseDNS no" | tee -a /etc/ssh/sshd_config > /dev/null
 echo "AllowGroups sshdusers" >> /etc/ssh/sshd_config
 sudo cp /lib/terminfo/l/linux /usr/share/terminfo/l/
-awk -F: '$3 == 1000 {print $1}' /etc/passwd | xargs usermod --groups sshdusers
+#awk -F: '$3 == 1000 {print $1}' /etc/passwd | xargs usermod --groups sshdusers
 
 service ssh restart
 
@@ -337,7 +338,7 @@ apt-get --yes install landscape-common >> $logfile 2>&1
 #Check if its Debian an do a sysvinit by upstart replacement:
 
 if [ "$OS1" = "Debian" ]; then
-  echo 'Yes, do as I say!' | apt-get -y --force-yes install upstart
+  echo 'Yes, do as I say!' | apt-get -y --force-yes install upstart >> $logfile 2>&1
 fi
 
 # 8.3 Generate our lists of ports and RPC and create variables
@@ -492,7 +493,7 @@ cd /var/www/rutorrent/plugins
 #svn co https://svn.code.sf.net/p/autodl-irssi/code/trunk/rutorrent/autodl-irssi
 ##mv /etc/bbox/autodl/autodl-irssi/ /var/www/rutorrent/plugins/autodl-irssi/
 cd /var/www/rutorrent/plugins/
-git clone https://github.com/autodl-community/autodl-rutorrent.git autodl-irssi
+git clone https://github.com/autodl-community/autodl-rutorrent.git autodl-irssi >> $logfile 2>&1
 
 # Installing Filemanager and MediaStream
 
@@ -653,8 +654,10 @@ tar xvf rtorrent-0.9.2.tar.gz
 chmod -R 755 /etc/bbox/source/
 
 cd /etc/bbox/source/xmlrpc-c
-./configure --libdir=/usr/local/lib --disable-cplusplus --disable-libwww-client --disable-wininet-client --disable-cgi-server --enable-libxml2-backend 
-make -j 8 && make install
+##./configure --libdir=/usr/local/lib --disable-cplusplus --disable-libwww-client --disable-wininet-client --disable-cgi-server --enable-libxml2-backend 
+./configure --prefix=/usr --enable-libxml2-backend --disable-libwww-client --disable-wininet-client --disable-abyss-server --disable-cgi-server >> $logfile 2>&1
+make -j$(grep -c ^processor /proc/cpuinfo) >> $logfile 2>&1
+make install >> $logfile 2>&1
 updatedb
 
 cd /etc/bbox/source/libtorrent-0.13.2
