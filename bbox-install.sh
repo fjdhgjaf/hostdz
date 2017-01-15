@@ -385,7 +385,7 @@ if [ "$INSTALLWEBMIN1" = "YES" ]; then
   if [ $? = 0 ] ; then
     ##wget -t 5 http://www.webmin.com/jcameron-key.asc
     cp /etc/bbox/jcameron-key.asc /root/jcameron-key.asc
-	apt-key add jcameron-key.asc
+	apt-key add jcameron-key.asc >> $logfile
     if [ $? = 0 ] ; then
       WEBMINDOWN=NO
     fi
@@ -470,7 +470,7 @@ fi
 echo "ServerName $IPADDRESS1" | tee -a /etc/apache2/apache2.conf > /dev/null
 
 # 14.
-a2ensite default-ssl
+a2ensite default-ssl >> $logfile
 
 cd /var/www/
 
@@ -517,7 +517,7 @@ rm -f -R /var/www/stream
 
 cd /var/www/rutorrent/plugins/
 
-git clone https://github.com/nelu/rutorrent-thirdparty-plugins.git >> $logfile 2>&1
+git clone https://github.com/nelu/rutorrent-thirdparty-plugins.git >> $logfile
 cp -avr /var/www/rutorrent/pluginds/rutorrent-thirdparty-plugins/filemanager /var/www/rutorrent/plugins/filemanager/
 cp -avr /var/www/rutorrent/pluginds/rutorrent-thirdparty-plugins/fileshare /var/www/rutorrent/plugins/fileshare/
 cp -avr /var/www/rutorrent/pluginds/rutorrent-thirdparty-plugins/fileupload /var/www/rutorrent/plugins/fileupload/
@@ -647,44 +647,7 @@ sudo addgroup root sshdusers >> $logfile
 ################################################x
 ##Új config rész
 ################################################x
-cd /etc/bbox/source
-wget http://launchpadlibrarian.net/85191944/libdigest-sha1-perl_2.13-2build2_amd64.deb >> $logfile
-sudo dpkg -i libdigest-sha1-perl_2.13-2build2_amd64.deb >> $logfile
-
-##sudo svn checkout http://svn.code.sf.net/p/xmlrpc-c/code/stable xmlrpc-c
-##sudo wget http://libtorrent.rakshasa.no/downloads/libtorrent-0.13.4.tar.gz
-mkdir -p /etc/bbox/source/xmlrpc-c
-cp /etc/bbox/xmlrpc.zip /etc/bbox/source/xmlrpc-c/xmlrpc.zip
-cd /etc/bbox/source/xmlrpc-c
-unzip /etc/bbox/source/xmlrpc-c/xmlrpc.zip >> $logfile 2>&1
-
-cd /etc/bbox/source
-
-tar xf libtorrent-0.13.2.tar.gz >> $logfile 2>&1
-##sudo wget http://libtorrent.rakshasa.no/downloads/rtorrent-0.9.4.tar.gz
-tar xvf rtorrent-0.9.2.tar.gz >> $logfile 2>&1
-
-chmod -R 755 /etc/bbox/source/
-
-cd /etc/bbox/source/xmlrpc-c
-##./configure --libdir=/usr/local/lib --disable-cplusplus --disable-libwww-client --disable-wininet-client --disable-cgi-server --enable-libxml2-backend 
-./configure --prefix=/usr --enable-libxml2-backend --disable-libwww-client --disable-wininet-client --disable-abyss-server --disable-cgi-server >> $logfile
-make -j$(grep -c ^processor /proc/cpuinfo) >> $logfile
-make install >> $logfile
-updatedb
-
-cd /etc/bbox/source/libtorrent-0.13.2
-sudo ./autogen.sh >> $logfile
-sudo ./configure --libdir=/usr/local/lib --disable-debug --with-posix-fallocate --enable-ipv6 --enable-arch=native --with-address-space=4096 >> $logfile
-make -j 8 && make install >> $logfile
-
-cd /etc/bbox/source/rtorrent-0.9.2
-sudo ./autogen.sh >> $logfile
-sudo ./configure --libdir=/usr/local/lib --disable-debug --with-xmlrpc-c --with-ncurses --enable-ipv6 --enable-arch=native >> $logfile 2>&1
-make -j 8 && make install >> $logfile
-sudo ldconfig >> $logfile
-apt-get install locate --yes >> $logfile
-updatedb
+bash /etc/bbox/installRTorrent $RTORRENT1 >> $logfile 2>&1
 ################################################x
 ##Új config rész vége
 ################################################x
@@ -756,7 +719,7 @@ echo -e "${bldgrn}# |-----------------------------------------------------------
 echo -e "${bldgrn}#"
 echo ""
 echo ""
-echo -e "${txtrst}System will reboot now, but don't close this window until you take note of the port number: $NEWSSHPORT1"
+#echo -e "${txtrst}System will reboot now, but don't close this window until you take note of the port number: $NEWSSHPORT1"
 
 perl -pi -e "s/memory_limit = 128M/memory_limit = 12048M/g" /etc/php5/apache2/php.ini
 service apache2 restart >> $logfile 2>&1 
@@ -774,7 +737,7 @@ bash /etc/bbox/egyeb/update >> $logfile 2>&1
 
 rm -f -r ~/bbox-install.sh
 echo "Újraindítás után már használható is a szerver!"
-bash /etc/bbox/egyeb/TeljesitmenyNoveles.sh > /dev/null
+bash /etc/bbox/egyeb/TeljesitmenyNoveles.sh >> $logfile
 
 reboot
 
