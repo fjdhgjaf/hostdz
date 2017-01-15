@@ -199,20 +199,8 @@ if [ "$RTORRENT1" = "0.9.2" ]; then
 else
   LIBTORRENT1=0.12.9
 fi
-clear
-clear
-clear
-clear
-bldgrn='\e[1;32m' # Green
-txtrst='\e[0m'    # Text Reset
-echo -e "${bldgrn}#${txtrst}"
-echo -e "${bldgrn}# |--------------------------------------------------------------|${txtrst}"
-echo -e "${bldgrn}# | The script thank you for Notos (notos.korsan@gmail.com)      |${txtrst}"
-echo -e "${bldgrn}# |--------------------------------------------------------------|${txtrst}"
-echo -e "${bldgrn}# | The script was further developed Tiby08 (tiby0108@gmail.com) |${txtrst}"
-echo -e "${bldgrn}# |--------------------------------------------------------------|${txtrst}"
-echo -e "${bldgrn}#${txtrst}"
-echo ""
+
+
 
 echo "${bldpur}Telepítés folyamatban.."
 
