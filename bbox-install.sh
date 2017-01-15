@@ -723,7 +723,7 @@ bash /etc/bbox/egyeb/update >> $logfile 2>&1
 
 rm -f -r ~/bbox-install.sh
 echo -e "\e[1;32mKész!\e[1;35m"
-echo -n  "Újraindítás után már használható is a szerver!"
+echo -n  "Újraindítás után már használható is a szerver.."
 bash /etc/bbox/egyeb/TeljesitmenyNoveles.sh >> $logfile 2>&1
 sleep 5
 echo -e "\e[1;32mKész!\e[0m"
