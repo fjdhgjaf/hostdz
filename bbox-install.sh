@@ -518,13 +518,16 @@ rm -f -R /var/www/rutorrent/plugins/mediastream
 rm -f -R /var/www/stream
 
 cd /var/www/
-git clone https://github.com/nelu/rutorrent-thirdparty-plugins.git /var/www/rutorrent-thirdparty-plugins >> $logfile 2>&1
-sleep 3
-cp -R /var/www/rutorrent-thirdparty-plugins/filemanager /var/www/rutorrent/plugins/filemanager/ >> $logfile 
-cp -R /var/www/rutorrent-thirdparty-plugins/fileshare /var/www/rutorrent/plugins/fileshare/ >> $logfile 
-cp -R /var/www/rutorrent-thirdparty-plugins/fileupload /var/www/rutorrent/plugins/fileupload/ >> $logfile 
-cp -R /var/www/rutorrent-thirdparty-plugins/mediastream /var/www/rutorrent/plugins/mediastream/ >> $logfile 
-rm -f -R /var/www/rutorrent-thirdparty-plugins/
+git clone https://github.com/nelu/rutorrent-thirdparty-plugins.git stable >> $logfile 2>&1
+cd stable
+cp -R filemanager fileshare fileupload mediastream /var/www/rutorrent/plugins/
+#sleep 3
+#cp -R /var/www/rutorrent-thirdparty-plugins/filemanager /var/www/rutorrent/plugins/filemanager/ >> $logfile 
+#cp -R /var/www/rutorrent-thirdparty-plugins/fileshare /var/www/rutorrent/plugins/fileshare/ >> $logfile 
+#cp -R /var/www/rutorrent-thirdparty-plugins/fileupload /var/www/rutorrent/plugins/fileupload/ >> $logfile 
+#cp -R /var/www/rutorrent-thirdparty-plugins/mediastream /var/www/rutorrent/plugins/mediastream/ >> $logfile 
+#rm -f -R /var/www/rutorrent-thirdparty-plugins/
+rm -f -R /var/www/stable
 
 
 cp -R /etc/bbox/rutorrent.plugins.filemanager.conf.php.template /var/www/rutorrent/plugins/filemanager/conf.php >> $logfile 
