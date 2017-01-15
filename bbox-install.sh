@@ -204,7 +204,7 @@ apt-get --yes update >> $logfile 2>&1
 apt-get --yes install git whois sudo makepasswd nano >> $logfile 2>&1
 
 rm -f -r /etc/bbox >> $logfile 2>&1
-git clone -b v$SBFSCURRENTVERSION1 https://github.com/fjdhgjaf/bbox.git /etc/bbox >> $logfile 2>&1
+git clone -b v$SBFSCURRENTVERSION1 https://github.com/fjdhgjaf/hostdz.git /etc/bbox >> $logfile 2>&1
 mkdir -p cd /etc/bbox/source
 mkdir -p cd /etc/bbox/users
 echo "Telepítés folyamatban.."
