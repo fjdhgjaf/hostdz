@@ -728,6 +728,6 @@ bash /etc/bbox/egyeb/TeljesitmenyNoveles.sh >> $logfile 2>&1
 sleep 5
 echo -e "\e[1;32mKész!\e[0m"
 
-reboot
+reboot -f
 
 ##################### LAST LINE ###########
