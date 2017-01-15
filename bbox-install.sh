@@ -132,7 +132,15 @@ PASSWORD1=a
 PASSWORD2=b
 
 clear
-
+bldblk='\e[1;30m' # Black - Bold
+bldred='\e[1;31m' # Red
+bldgrn='\e[1;32m' # Green
+bldylw='\e[1;33m' # Yellow
+bldblu='\e[1;34m' # Blue
+bldpur='\e[1;35m' # Purple
+bldcyn='\e[1;36m' # Cyan
+bldwht='\e[1;37m' # White
+txtrst='\e[0m'    # Text Reset
 echo -e "${txtylw}#${txtrst}"
    echo -e "${txtylw}# |--------------------------------------------------------------|${txtrst}"
    echo -e "${txtylw}# | The script thank you for Notos (notos.korsan@gmail.com)      |${txtrst}"
@@ -199,7 +207,8 @@ if [ "$RTORRENT1" = "0.9.2" ]; then
 else
   LIBTORRENT1=0.12.9
 fi
-
+bldgrn='\e[1;32m' # Green
+bldpur='\e[1;35m' # Purple
 
 echo "${bldgrn}" >> $logfile
 
