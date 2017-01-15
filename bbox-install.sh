@@ -148,7 +148,6 @@ echo -e "\e[1;33m#${txtrst}"
    echo -e "# | The script was further developed Tiby08 (tiby0108@gmail.com) |"
    echo -e "# |--------------------------------------------------------------|"
 echo -e "#${txtrst}"
-echo
 getString NO  "SeedBox username:" NEWUSER1 $1
 getString NO "SeedBox user($NEWUSER1) password:" PASSWORD1 $2
 getString NO  "IP or host:" IPADDRESS1 $IPADDRESS1
