@@ -724,9 +724,9 @@ echo "session required pam_limits.so" | tee -a /etc/pam.d/common-session* > /dev
 echo "session required pam_limits.so" | tee -a /etc/pam.d/common-session > /dev/null
 
 if [ "$SHAREDSEEDBOX1" = "YES" ]; then
-	bash createSeedboxUser $NEWUSER1 $PASSWORD1 YES YES YES
+	bash createSeedboxUser $NEWUSER1 $PASSWORD1 YES YES YES >> $logfile 2>&1 
 else
-	bash createSeedboxUser $NEWUSER1 $PASSWORD1 NO NO NO
+	bash createSeedboxUser $NEWUSER1 $PASSWORD1 NO NO NO >> $logfile 2>&1 
 	perl -pi -e "s/USERHASSSHACCESS1=YES/USERHASSSHACCESS1=NO/g" /etc/bbox/createSeedboxUser
 	perl -pi -e "s/USERINSUDOERS1=YES/USERINSUDOERS1=NO/g" /etc/bbox/createSeedboxUser
 
@@ -749,20 +749,21 @@ echo ""
 echo -e "${txtrst}System will reboot now, but don't close this window until you take note of the port number: $NEWSSHPORT1"
 
 perl -pi -e "s/memory_limit = 128M/memory_limit = 12048M/g" /etc/php5/apache2/php.ini
-service apache2 restart
-
-bash /etc/bbox/ChangeDNS $IPADDRESS1
-bash /etc/bbox/InstallCpan
-bash /etc/bbox/egyeb/updateRutorrent
+service apache2 restart >> $logfile 2>&1 
+echo "Utolsó simítások.."
+bash /etc/bbox/ChangeDNS $IPADDRESS1 >> $logfile 2>&1 
+bash /etc/bbox/InstallCpan >> $logfile 2>&1 
+bash /etc/bbox/egyeb/updateRutorrent >> $logfile 2>&1 
 
 cd /var/www/rutorrent/plugins/
-git clone https://github.com/xombiemp/rutorrentMobile.git mobile
-
-bash /etc/bbox/egyeb/upgradetech
-bash /etc/bbox/egyeb/ApiUpd
-bash /etc/bbox/egyeb/update
+git clone https://github.com/xombiemp/rutorrentMobile.git mobile >> $logfile 2>&1 
+echo "Config véglegesítése.."
+bash /etc/bbox/egyeb/upgradetech >> $logfile 2>&1 
+bash /etc/bbox/egyeb/ApiUpd >> $logfile 2>&1 
+bash /etc/bbox/egyeb/update >> $logfile 2>&1 
 
 rm -f -r ~/bbox-install.sh
+echo "Újraindítás után már használható is a szerver!"
 bash /etc/bbox/egyeb/TeljesitmenyNoveles.sh
 
 reboot
