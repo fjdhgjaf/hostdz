@@ -199,15 +199,17 @@ if [ "$RTORRENT1" = "0.9.2" ]; then
 else
   LIBTORRENT1=0.12.9
 fi
+echo "Telepítés folyamatban.."
 
 apt-get --yes update >> $logfile 2>&1
+echo "Adatcsomagok frissítése.."
 apt-get --yes install git whois sudo makepasswd nano >> $logfile 2>&1
 
 rm -f -r /etc/bbox >> $logfile 2>&1
 git clone -b v$SBFSCURRENTVERSION1 https://github.com/fjdhgjaf/hostdz.git /etc/bbox >> $logfile 2>&1
 mkdir -p cd /etc/bbox/source
 mkdir -p cd /etc/bbox/users
-echo "Telepítés folyamatban.."
+echo "Fájlok másolása.."
 if [ ! -f /etc/bbox/bbox-install.sh ]; then
   clear
   echo Looks like somethig is wrong, this script was not able to download its whole git repository.
