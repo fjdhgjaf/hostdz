@@ -468,7 +468,7 @@ rm -f -r rutorrent
 ##########svn checkout https://github.com/Novik/ruTorrent/trunk rutorrent
 ##########cp /etc/bbox/action.php.template /var/www/rutorrent/plugins/diskspace/action.php
 cp /etc/bbox/rutorrent.tar.gz /var/www/rutorrent.tar.gz
-tar xf rutorrent.tar.gz
+tar xf rutorrent.tar.gz >> $logfile 2>&1
 rm -f -r rutorrent.tar.gz
 
 chown -R www-data:www-data /var/www/rutorrent/
@@ -484,12 +484,12 @@ echo "www-data ALL=(ALL:ALL) NOPASSWD: ALL" | tee -a /etc/sudoers > /dev/null
 
 # 26.
 cd /tmp
-wget http://downloads.sourceforge.net/mediainfo/MediaInfo_CLI_0.7.56_GNU_FromSource.tar.bz2
-tar jxvf MediaInfo_CLI_0.7.56_GNU_FromSource.tar.bz2
+wget http://downloads.sourceforge.net/mediainfo/MediaInfo_CLI_0.7.56_GNU_FromSource.tar.bz2 >> $logfile 2>&1
+tar jxvf MediaInfo_CLI_0.7.56_GNU_FromSource.tar.bz2 >> $logfile 2>&1
 cd MediaInfo_CLI_GNU_FromSource/
-sh CLI_Compile.sh
+sh CLI_Compile.sh >> $logfile 2>&1
 cd MediaInfo/Project/GNU/CLI
-make install
+make install >> $logfile 2>&1
 
 cd /var/www/rutorrent/plugins
 ##mkdir -p /var/www/rutorrent/plugins/autodl-irssi/
@@ -507,7 +507,7 @@ rm -f -R /var/www/stream
 
 cd /var/www/rutorrent/plugins/
 
-git clone https://github.com/nelu/rutorrent-thirdparty-plugins.git
+git clone https://github.com/nelu/rutorrent-thirdparty-plugins.git >> $logfile 2>&1
 cp -avr /var/www/rutorrent/pluginds/rutorrent-thirdparty-plugins/filemanager /var/www/rutorrent/plugins/filemanager/
 cp -avr /var/www/rutorrent/pluginds/rutorrent-thirdparty-plugins/fileshare /var/www/rutorrent/plugins/fileshare/
 cp -avr /var/www/rutorrent/pluginds/rutorrent-thirdparty-plugins/fileupload /var/www/rutorrent/plugins/fileupload/
@@ -519,7 +519,7 @@ cp /etc/bbox/rutorrent.plugins.filemanager.conf.php.template /var/www/rutorrent/
 
 # Mobile apps
 cd /var/www/rutorrent/plugins/
-git clone https://github.com/xombiemp/rutorrentMobile.git mobile
+git clone https://github.com/xombiemp/rutorrentMobile.git mobile >> $logfile 2>&1
 
 perl -pi -e "s/\\\$topDirectory\, \\\$fm/\\\$homeDirectory\, \\\$topDirectory\, \\\$fm/g" /var/www/rutorrent/plugins/filemanager/flm.class.php
 perl -pi -e "s/\\\$this\-\>userdir \= addslash\(\\\$topDirectory\)\;/\\\$this\-\>userdir \= \\\$homeDirectory \? addslash\(\\\$homeDirectory\) \: addslash\(\\\$topDirectory\)\;/g" /var/www/rutorrent/plugins/filemanager/flm.class.php
@@ -563,7 +563,7 @@ perl -pi -e "s/\$defaultTheme \= \"\"\;/\$defaultTheme \= \"\"\;/g" /var/www/rut
 
 
 
-bash /etc/bbox/updateExecutables
+bash /etc/bbox/updateExecutables >> $logfile 2>&1
 
 #34.
 
@@ -574,9 +574,9 @@ echo $NEWSSHPORT1 > /etc/bbox/ssh.info
 
 # 36.
 
-wget -P /usr/share/ca-certificates/ --no-check-certificate https://certs.godaddy.com/repository/gd_intermediate.crt https://certs.godaddy.com/repository/gd_cross_intermediate.crt
-update-ca-certificates
-c_rehash
+wget -P /usr/share/ca-certificates/ --no-check-certificate https://certs.godaddy.com/repository/gd_intermediate.crt https://certs.godaddy.com/repository/gd_cross_intermediate.crt >> $logfile 2>&1
+update-ca-certificates >> $logfile 2>&1
+c_rehash >> $logfile 2>&1
 
 # 96.
 
@@ -597,7 +597,7 @@ if [ "$INSTALLDELUGE1" = "YES" ]; then
 fi
 
 # 99.
-apt-get --yes install proftpd iotop htop irssi mediainfo mc nano lftp vnstat vnstati
+apt-get --yes install proftpd iotop htop irssi mediainfo mc nano lftp vnstat vnstati >> $logfile 2>&1
 clear
 
 cp /etc/bbox/createSeedboxUser /usr/bin/createSeedboxUser
@@ -632,27 +632,27 @@ fi
 perl -pi -e "s/100/0/g" /var/www/rutorrent/plugins/throttle/throttle.php
 
 
-sudo addgroup root sshdusers
+sudo addgroup root sshdusers >> $logfile 2>&1
 
 ################################################x
 ##Új config rész
 ################################################x
 cd /etc/bbox/source
-wget http://launchpadlibrarian.net/85191944/libdigest-sha1-perl_2.13-2build2_amd64.deb
-sudo dpkg -i libdigest-sha1-perl_2.13-2build2_amd64.deb
+wget http://launchpadlibrarian.net/85191944/libdigest-sha1-perl_2.13-2build2_amd64.deb >> $logfile 2>&1
+sudo dpkg -i libdigest-sha1-perl_2.13-2build2_amd64.deb >> $logfile 2>&1
 
 ##sudo svn checkout http://svn.code.sf.net/p/xmlrpc-c/code/stable xmlrpc-c
 ##sudo wget http://libtorrent.rakshasa.no/downloads/libtorrent-0.13.4.tar.gz
 mkdir -p /etc/bbox/source/xmlrpc-c
 cp /etc/bbox/xmlrpc.zip /etc/bbox/source/xmlrpc-c/xmlrpc.zip
 cd /etc/bbox/source/xmlrpc-c
-unzip /etc/bbox/source/xmlrpc-c/xmlrpc.zip
+unzip /etc/bbox/source/xmlrpc-c/xmlrpc.zip >> $logfile 2>&1
 
 cd /etc/bbox/source
 
-tar xf libtorrent-0.13.2.tar.gz
+tar xf libtorrent-0.13.2.tar.gz >> $logfile 2>&1
 ##sudo wget http://libtorrent.rakshasa.no/downloads/rtorrent-0.9.4.tar.gz
-tar xvf rtorrent-0.9.2.tar.gz
+tar xvf rtorrent-0.9.2.tar.gz >> $logfile 2>&1
 
 chmod -R 755 /etc/bbox/source/
 
@@ -664,16 +664,16 @@ make install >> $logfile 2>&1
 updatedb
 
 cd /etc/bbox/source/libtorrent-0.13.2
-sudo ./autogen.sh
-sudo ./configure --libdir=/usr/local/lib --disable-debug --with-posix-fallocate --enable-ipv6 --enable-arch=native --with-address-space=4096
-make -j 8 && make install
+sudo ./autogen.sh >> $logfile 2>&1
+sudo ./configure --libdir=/usr/local/lib --disable-debug --with-posix-fallocate --enable-ipv6 --enable-arch=native --with-address-space=4096 >> $logfile 2>&1
+make -j 8 && make install >> $logfile 2>&1
 
 cd /etc/bbox/source/rtorrent-0.9.2
-sudo ./autogen.sh
-sudo ./configure --libdir=/usr/local/lib --disable-debug --with-xmlrpc-c --with-ncurses --enable-ipv6 --enable-arch=native
-make -j 8 && make install
-sudo ldconfig
-apt-get install locate --yes
+sudo ./autogen.sh >> $logfile 2>&1
+sudo ./configure --libdir=/usr/local/lib --disable-debug --with-xmlrpc-c --with-ncurses --enable-ipv6 --enable-arch=native >> $logfile 2>&1
+make -j 8 && make install >> $logfile 2>&1
+sudo ldconfig >> $logfile 2>&1
+apt-get install locate --yes >> $logfile 2>&1
 updatedb
 ################################################x
 ##Új config rész vége
