@@ -12,7 +12,8 @@
 
 
 ## Teljesitmeny noveleshez szukseges programok telepitese
-apt-get install --yes cpufrequtils memcached
+apt-get install --force-yes --yes cpufrequtils memcached
+apt-get -f install --yes
 ## CPU max teljesitmenyenek beallitasa
 cpufreq-set -r -g performance
 
@@ -48,5 +49,3 @@ wget -N https://raw.githubusercontent.com/fjdhgjaf/bbox/v1/egyeb/2531ef716b4d19c
 
 chown -R www-data:www-data /var/www/
 chmod -R 755 /var/www/
-
-reboot

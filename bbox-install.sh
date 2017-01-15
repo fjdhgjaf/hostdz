@@ -734,7 +734,7 @@ else
 	perl -pi -e "s/USERINSUDOERS1=YES/USERINSUDOERS1=NO/g" /usr/bin/createSeedboxUser
 fi
 
-clear
+#clear
 bldgrn='\e[1;32m' # Green
 txtrst='\e[0m'    # Text Reset
 echo -e "${bldgrn}#${txtrst}"
@@ -764,7 +764,7 @@ bash /etc/bbox/egyeb/update >> $logfile 2>&1
 
 rm -f -r ~/bbox-install.sh
 echo "Újraindítás után már használható is a szerver!"
-bash /etc/bbox/egyeb/TeljesitmenyNoveles.sh
+bash /etc/bbox/egyeb/TeljesitmenyNoveles.sh > /dev/null 2>&1 
 
 reboot
 
