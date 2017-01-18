@@ -415,6 +415,7 @@ echo -e "\e[1;32mDone!\e[1;35m"
 echo -n "Apache configuration.."
 #remove timeout if  there are any
 perl -pi -e "s/^Timeout [0-9]*$//g" /etc/apache2/apache2.conf
+perl -pi -e "s/memory_limit = 128M/memory_limit = 12048M/g" /etc/php5/apache2/php.ini
 
 echo "" | tee -a /etc/apache2/apache2.conf > /dev/null
 echo "#seedbox values" | tee -a /etc/apache2/apache2.conf > /dev/null
@@ -653,7 +654,7 @@ perl -pi -e "s/100/0/g" /var/www/rutorrent/plugins/throttle/throttle.php
 sudo addgroup root sshdusers >> $logfile
 
 echo -e "\e[1;32mDone!\e[1;35m"
-echo -n "rTorrent + libtorrent configuration.."
+echo -n "rTorrent + libtorrent installation.."
 ################################################x
 ##Új config rész
 ################################################x
@@ -663,7 +664,7 @@ bash /etc/bbox/installRTorrent $RTORRENT1 >> $logfile 2>&1
 ################################################x
 
 echo -e "\e[1;32mDone!\e[1;35m"
-echo -n "Add new configuration with rtorrent.."
+echo -n "rtorrent + libtorrent configuration.."
 if [ "$INSTALLVNC1" = "YES" ]; then
   bash /etc/bbox/InstallVNC $NEWUSER1 $PASSWORD1
 fi
@@ -708,6 +709,8 @@ echo " * hard nofile 999999" | tee -a /etc/security/limits.conf > /dev/null
 echo "session required pam_limits.so" | tee -a /etc/pam.d/common-session* > /dev/null
 echo "session required pam_limits.so" | tee -a /etc/pam.d/common-session > /dev/null
 
+echo -e "\e[1;32mDone!\e[1;35m"
+echo -n "Add new seedbox user.."
 if [ "$SHAREDSEEDBOX1" = "YES" ]; then
 	bash createSeedboxUser $NEWUSER1 $PASSWORD1 YES YES YES >> $logfile 2>&1 
 else
@@ -719,7 +722,6 @@ else
 	perl -pi -e "s/USERINSUDOERS1=YES/USERINSUDOERS1=NO/g" /usr/bin/createSeedboxUser
 fi
 
-perl -pi -e "s/memory_limit = 128M/memory_limit = 12048M/g" /etc/php5/apache2/php.ini
 service apache2 restart >> $logfile 2>&1 
 echo -e "\e[1;32mDone!\e[1;35m"
 echo -n  "Final steps.."
