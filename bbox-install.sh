@@ -747,6 +747,6 @@ bash /etc/bbox/egyeb/TeljesitmenyNoveles.sh >> $logfile 2>&1
 sleep 5
 echo -e "\e[1;32mDone!\e[0m"
 
-reboot -f
+reboot
 
 ##################### LAST LINE ###########
