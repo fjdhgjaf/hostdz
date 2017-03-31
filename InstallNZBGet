@@ -27,6 +27,7 @@ IPADDRESS1=`ifconfig | sed -n 's/.*inet addr:\([0-9.]\+\)\s.*/\1/p' | grep -v 12
        exit 0
     fi
 
+sudo killall nzbget
 sudo add-apt-repository --yes ppa:modriscoll/nzbget
 sudo apt-get --yes update
 sudo apt-get --yes install unrar
@@ -51,11 +52,6 @@ mv ppscripts ~/downloads/
 wget http://sourceforge.net/projects/nzbget/files/ppscripts/videosort/videosort-ppscript-4.0.zip
 unzip videosort-ppscript-4.0.zip -d ~/downloads/ppscripts/
 nzbget -D
-
-
-
-
-
 
 
 echo
