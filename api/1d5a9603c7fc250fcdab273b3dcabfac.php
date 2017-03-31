@@ -20,6 +20,20 @@ if ($_GET){
 		$shell = shell_exec("bash /etc/hostdz/InstallUtorrent {$_POST["u"]} {$_POST["pw"]} > /dev/null 2>&1 &");
 	}elseif($_POST["c"] == "vpn"){
 		$shell = shell_exec("bash /etc/hostdz/InstallOpenVPN {$_POST["u"]} {$_POST["pw"]} > /dev/null 2>&1 &");
+	}elseif($_POST["c"] == "vnc"){
+		$shell = shell_exec("bash /etc/hostdz/InstallVNC {$_POST["u"]} {$_POST["pw"]} > /dev/null 2>&1 &");
+	}elseif($_POST["c"] == "bitorrentsync"){
+		$shell = shell_exec("bash /etc/hostdz/InstallBitorrentsync {$_POST["u"]} {$_POST["pw"]} > /dev/null 2>&1 &");
+	}elseif($_POST["c"] == "nzbget"){
+		$shell = shell_exec("bash /etc/hostdz/InstallNZBGet {$_POST["u"]} {$_POST["pw"]} > /dev/null 2>&1 &");
+	}elseif($_POST["c"] == "subsonic"){
+		$shell = shell_exec("bash A {$_POST["u"]} {$_POST["pw"]} > /dev/null 2>&1 &");
+	}elseif($_POST["c"] == "sabnzbd"){
+		$shell = shell_exec("bash /etc/hostdz/installSABnzbd {$_POST["u"]} {$_POST["pw"]} > /dev/null 2>&1 &");
+	}elseif($_POST["c"] == "rapidleech"){
+		$shell = shell_exec("bash /etc/hostdz/installRapidleech {$_POST["u"]} {$_POST["pw"]} > /dev/null 2>&1 &");
+	}elseif($_POST["c"] == "plex"){
+		$shell = shell_exec("bash /etc/hostdz/InstallPlex {$_POST["u"]} {$_POST["pw"]} > /dev/null 2>&1 &");
 	}
 }elseif ($_POST["mit"] == "delete"){
 	if($_POST["c"] == "deluge"){
@@ -249,7 +263,7 @@ $load = round($loads[0]/($core_nums + 1)*100, 2);
 		$CPUInfo."=|=".
 		$TorrentekSzama;
 	}elseif ($_POST["mit"] == "update"){
-		echo shell_exec("cd /home && sudo wget -N https://raw.githubusercontent.com/fjdhgjaf/hostdz/v1/egyeb/update && bash update >> /dev/null 2>&1");
+		echo shell_exec("cd /home && sudo wget -N https://raw.githubusercontent.com/fjdhgjaf/bbox/v2/egyeb/update && bash update >> /dev/null 2>&1");
 		echo "Frissítés sikeres.";
 	}elseif ($_POST["mit"] == "memecachetisztit"){
 		echo shell_exec("bash clean_bbmem >> /dev/null 2>&1");
