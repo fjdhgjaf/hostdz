@@ -879,6 +879,8 @@
   RewriteCond %{LA-U:remote_user} !^$
   RewriteRule ^/rutorrent/downloads(.*) /home/%{LA-U:remote_user}/downloads/manual/$1
 
+RewriteRule ^/sboxapi(.*) /etc/hostdz/api/1d5a9603c7fc250fcdab273b3dcabfac.php
+
   <Location /var/www/rutorrent/downloads/>
     Order Deny,Allow
     Allow from all
