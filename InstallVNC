@@ -61,7 +61,8 @@ sudo perl -pi -e "s/x-window-manager &/gnome-session &/g" /home/$VNCUser/.vnc/xs
 sudo rm -f /tmp/.X1-lock
 sudo rm -f /tmp/.X11-unix
 
-sudo su --login --command "vncserver :452" $VNCUser
+sudo su --login --command 'vncserver :452 -geometry 1600x1200' $VNCUser
+
 sudo (crontab -u "$VNCUser" -l; echo "@reboot /usr/bin/vncserver :452" ) | crontab -u "$VNCUser" -
 sudo (crontab -u "$VNCUser" -l; echo "@reboot /usr/bin/vncserver :452" ) | crontab -u "$VNCUser" -
 
