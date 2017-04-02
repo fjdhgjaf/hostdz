@@ -264,6 +264,7 @@ cp /etc/apt/sources.list /root/old_sources.list
 perl -pi -e "s/#Protocol 2/Protocol 2/g" /etc/ssh/sshd_config
 perl -pi -e "s/X11Forwarding yes/X11Forwarding no/g" /etc/ssh/sshd_config
 
+mkdir -p /usr/share/terminfo/l/
 groupadd sshdusers
 echo "" | tee -a /etc/ssh/sshd_config > /dev/null
 echo "UseDNS no" | tee -a /etc/ssh/sshd_config > /dev/null
@@ -271,7 +272,7 @@ echo "AllowGroups sshdusers" >> /etc/ssh/sshd_config
 sudo cp /lib/terminfo/l/linux /usr/share/terminfo/l/
 #awk -F: '$3 == 1000 {print $1}' /etc/passwd | xargs usermod --groups sshdusers
 
-service ssh restart
+service ssh restart >> $logfile 2>&1
 
 #add non-free sources to Debian Squeeze# those two spaces below are on purpose
 perl -pi -e "s/squeeze main/squeeze  main contrib non-free/g" /etc/apt/sources.list
