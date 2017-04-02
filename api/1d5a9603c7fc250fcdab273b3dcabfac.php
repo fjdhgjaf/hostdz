@@ -10,60 +10,62 @@ if ($_GET){
 <h1>Not Found</h1>
 <p>The requested URL /sboxapi was not found on this server.</p>
 </body></html>
-<?
+<?php
 }elseif ($_POST["mit"] == "install"){
 	if($_POST["c"] == "deluge"){
-		$shell = shell_exec("bash /etc/hostdz/installDeluge {$_POST["u"]} {$_POST["pw"]} > /dev/null 2>&1 &");
+		$shell = shell_exec("bash /etc/bbox/installDeluge {$_POST["u"]} {$_POST["pw"]}");
 	}elseif($_POST["c"] == "transmission"){
-		$shell = shell_exec("bash /etc/hostdz/InstallTransmission {$_POST["u"]} {$_POST["pw"]} > /dev/null 2>&1 &");
+		$shell = shell_exec("bash /etc/bbox/InstallTransmission {$_POST["u"]} {$_POST["pw"]}");
 	}elseif($_POST["c"] == "utorrent"){
-		$shell = shell_exec("bash /etc/hostdz/InstallUtorrent {$_POST["u"]} {$_POST["pw"]} > /dev/null 2>&1 &");
+		$shell = shell_exec("bash /etc/bbox/InstallUtorrent {$_POST["u"]} {$_POST["pw"]}");
 	}elseif($_POST["c"] == "vpn"){
-		$shell = shell_exec("bash /etc/hostdz/InstallOpenVPN {$_POST["u"]} {$_POST["pw"]} > /dev/null 2>&1 &");
+		$shell = shell_exec("bash /etc/bbox/InstallOpenVPN {$_POST["u"]} {$_POST["pw"]}");
 	}elseif($_POST["c"] == "vnc"){
-		$shell = shell_exec("bash /etc/hostdz/InstallVNC {$_POST["u"]} {$_POST["pw"]} > /dev/null 2>&1 &");
+		$shell = shell_exec("bash /etc/bbox/InstallVNC {$_POST["u"]} {$_POST["pw"]}");
 	}elseif($_POST["c"] == "bitorrentsync"){
-		$shell = shell_exec("bash /etc/hostdz/InstallBitorrentsync {$_POST["u"]} {$_POST["pw"]} > /dev/null 2>&1 &");
+		$shell = shell_exec("bash /etc/bbox/InstallBitorrentsync {$_POST["u"]} {$_POST["pw"]}");
 	}elseif($_POST["c"] == "nzbget"){
-		$shell = shell_exec("bash /etc/hostdz/InstallNZBGet {$_POST["u"]} {$_POST["pw"]} > /dev/null 2>&1 &");
+		$shell = shell_exec("bash /etc/bbox/InstallNZBGet {$_POST["u"]} {$_POST["pw"]}");
 	}elseif($_POST["c"] == "subsonic"){
-		$shell = shell_exec("bash A {$_POST["u"]} {$_POST["pw"]} > /dev/null 2>&1 &");
+		$shell = shell_exec("bash /etc/bbox/InstallSubsonic {$_POST["u"]} {$_POST["pw"]}");
 	}elseif($_POST["c"] == "sabnzbd"){
-		$shell = shell_exec("bash /etc/hostdz/installSABnzbd {$_POST["u"]} {$_POST["pw"]} > /dev/null 2>&1 &");
+		$shell = shell_exec("bash /etc/bbox/installSABnzbd {$_POST["u"]} {$_POST["pw"]}");
 	}elseif($_POST["c"] == "rapidleech"){
-		$shell = shell_exec("bash /etc/hostdz/installRapidleech {$_POST["u"]} {$_POST["pw"]} > /dev/null 2>&1 &");
+		$shell = shell_exec("bash /etc/bbox/installRapidleech {$_POST["u"]} {$_POST["pw"]}");
 	}elseif($_POST["c"] == "plex"){
-		$shell = shell_exec("bash /etc/hostdz/InstallPlex {$_POST["u"]} {$_POST["pw"]} > /dev/null 2>&1 &");
+		$shell = shell_exec("bash /etc/bbox/InstallPlex {$_POST["u"]} {$_POST["pw"]}");
 	}
 }elseif ($_POST["mit"] == "delete"){
 	if($_POST["c"] == "deluge"){
-		$shell = shell_exec("bash rm -rf /home/{$_POST["u"]}/.config/deluge {$_POST["u"]} > /dev/null 2>&1 &");
+		$shell = shell_exec("bash rm -rf /home/{$_POST["u"]}/.config/deluge {$_POST["u"]}");
 	}elseif($_POST["c"] == "transmission"){
-		$shell = shell_exec("bash sudo apt-get --purge remove transmission-cli transmission-common transmission-daemon > /dev/null 2>&1 &");
+		$shell = shell_exec("bash sudo apt-get --purge remove transmission-cli transmission-common transmission-daemon");
 	}elseif($_POST["c"] == "utorrent"){
-		$shell = shell_exec("bash rm -rf /usr/bin/utserver | rm -rf /home/{$_POST["u"]}/.utserver | killall -u {$_POST["u"]} utserver > /dev/null 2>&1 &");
+		$shell = shell_exec("bash rm -rf /usr/bin/utserver | rm -rf /home/{$_POST["u"]}/.utserver | killall -u {$_POST["u"]} utserver");
 	}elseif($_POST["c"] == "vpn"){
 		$shell = shell_exec("bash clear");
 	}
 }elseif ($_POST["mit"] == "restart"){
 	if($_POST["c"] == "rtorrent"){
-		$shell = shell_exec("bash rm -rf /home/{$_POST["u"]}/downloads/.session/rtorrent.lock > /dev/null 2>&1 &");
+		$shell = shell_exec("bash rm -rf /home/{$_POST["u"]}/downloads/.session/rtorrent.lock");
 //		$shell = shell_exec('sudo su --login --command "kill -9 -1" '.$_POST["u"].' ');
-		$shell = shell_exec("sudo su --login --command \"killall screen\" {$_POST["u"]} > /dev/null 2>&1 &");
+		$shell = shell_exec("sudo su --login --command \"killall screen\" {$_POST["u"]}");
+		$shell = shell_exec("sudo su --login --command \"screen -d -m -S rtorrent rtorrent\" {$_POST["u"]}");
+		//$shell = shell_exec("sudo reboot_bbuser {$_POST["u"]}");
 		//$shell = shell_exec("sudo su --login --command \"screen -wipe\" {$_POST["u"]}");
 		//$shell = shell_exec('sudo su --login --command "kill -9 -1" '.$_POST["u"].' ');
-		$shell = shell_exec('sudo su --login --command "screen -d -m -S rtorrent rtorrent" '.$_POST["u"].' > /dev/null 2>&1 &');
+		//$shell = shell_exec('sudo su --login --command "screen -d -m -S rtorrent rtorrent" '.$_POST["u"].'');
 	}elseif($_POST["c"] == "deluge"){
-		$shell = shell_exec("sudo su --login --command 'killall deluged' {$_POST["u"]} > /dev/null 2>&1 &");
-		$shell = shell_exec("sudo su --login --command 'killall deluge-web' {$_POST["u"]} > /dev/null 2>&1 &");
-		$shell = shell_exec("rm -rf /home/{$_POST["u"]}/.config/deluge/deluged.pid > /dev/null 2>&1 &");
-		$shell = shell_exec("sudo su --login --command 'deluged' {$_POST["u"]} > /dev/null 2>&1 &");
-		$shell = shell_exec("sudo su --login --command 'screen -d -m -S deluge-web deluge-web' {$_POST["u"]} > /dev/null 2>&1 &");
+		$shell = shell_exec("sudo su --login --command 'killall deluged' {$_POST["u"]}");
+		$shell = shell_exec("sudo su --login --command 'killall deluge-web' {$_POST["u"]}");
+		$shell = shell_exec("rm -rf /home/{$_POST["u"]}/.config/deluge/deluged.pid");
+		$shell = shell_exec("sudo su --login --command 'deluged' {$_POST["u"]}");
+		$shell = shell_exec("sudo su --login --command 'screen -d -m -S deluge-web deluge-web' {$_POST["u"]}");
 	}elseif($_POST["c"] == "transmission"){
 		$shell = shell_exec("sudo su --login --command '/etc/init.d/transmission-daemon restart' {$_POST["u"]}");
 	}elseif($_POST["c"] == "utorrent"){
-		$shell = shell_exec("sudo su --login --command 'killall utserver' {$_POST["u"]} > /dev/null 2>&1 &");
-		$shell = shell_exec("sudo su --login --command 'utserver -settingspath /home/{$_POST["u"]}/.utserver/ -configfile /home/{$_POST["u"]}/.utserver/utserver.conf -logfile /home/{$_POST["u"]}/.utserver/utserver.log -pidfile /home/{$_POST["u"]}/.utserver/utserver.pid -daemon' {$_POST["u"]} > /dev/null 2>&1 &");
+		$shell = shell_exec("sudo su --login --command 'killall utserver' {$_POST["u"]}");
+		$shell = shell_exec("sudo su --login --command 'utserver -settingspath /home/{$_POST["u"]}/.utserver/ -configfile /home/{$_POST["u"]}/.utserver/utserver.conf -logfile /home/{$_POST["u"]}/.utserver/utserver.log -pidfile /home/{$_POST["u"]}/.utserver/utserver.pid -daemon' {$_POST["u"]}");
 	}elseif($_POST["c"] == "vpn"){
 		$shell = shell_exec("bash clear");
 	}
@@ -116,9 +118,9 @@ if ($_GET){
 		$homeBase = $topDirectory;
 		$quotaEnabled = true;
 
-		if (isset($quotaUser) and !Empty($quotaUser) and file_exists($homeBase.'/aquota.user')) {
-			$quotaEnabled = myGetDirs($quotaUser, &$homeUser, &$homeBase); /// get the real home dir
-		}
+		//if (isset($quotaUser) and !Empty($quotaUser) and file_exists($homeBase.'/aquota.user')) {
+		//	$quotaEnabled = myGetDirs($quotaUser, &$homeUser, &$homeBase); /// get the real home dir
+		//}
 
 		if ($quotaEnabled) {
 			$TeljesMeret = shell_exec("/usr/bin/sudo /usr/sbin/repquota -u -a | grep ^".$quotaUser." | awk '{print \$4}'") * 1024;
@@ -144,9 +146,9 @@ if ($_GET){
 		$homeBase= $topDirectory;
 		$quotaEnabled = FALSE;
 
-		if (isset($quotaUser) and !Empty($quotaUser) and file_exists($homeBase.'/aquota.user')) {
-			$quotaEnabled = myGetDirs($quotaUser, &$homeUser, &$homeBase); /// get the real home dir
-		}
+		//if (isset($quotaUser) and !Empty($quotaUser) and file_exists($homeBase.'/aquota.user')) {
+		//	$quotaEnabled = myGetDirs($quotaUser, &$homeUser, &$homeBase); /// get the real home dir
+		//}
 		
 		$TorrentekSzama = shell_exec("ls /home/{$quotaUser}/downloads/.session/*.torrent|wc -l");
 		if ($_POST["mit"] == "teljeshdd")
