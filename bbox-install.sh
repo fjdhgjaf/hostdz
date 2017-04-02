@@ -214,7 +214,7 @@ echo -n "Installing started.."
 apt-get --yes update >> $logfile 2>&1
 echo -e "\e[1;32mDone!\e[1;35m"
 echo -n "Packets update progress.."
-apt-get --yes install git whois sudo makepasswd nano >> $logfile 2>&1
+apt-get --yes install git whois sudo makepasswd nano >> $logfile
 
 rm -f -r /etc/bbox >> $logfile 2>&1
 git clone -b v$SBFSCURRENTVERSION1 https://github.com/fjdhgjaf/hostdz.git /etc/bbox >> $logfile 2>&1
