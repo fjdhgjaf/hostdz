@@ -736,6 +736,14 @@ echo "net.ipv4.conf.all.accept_redirects = 0" >> /etc/sysctl.conf >> $logfile 2>
 echo "net.ipv4.conf.all.accept_source_route = 0" >> /etc/sysctl.conf >> $logfile 2>&1
 sysctl -p >> $logfile 2>&1
 
+apt-get install --force-yes --yes cpufrequtils memcached >> $logfile 2>&1
+## CPU max teljesitmenyenek beallitasa
+sleep 5
+cpufreq-set -r -g performance >> $logfile 2>&1
+
+/sbin/modprobe tcp_htcp >> $logfile 2>&1
+/sbin/modprobe tcp_cubic >> $logfile 2>&1
+
 echo "session required pam_limits.so" >>/etc/pam.d/common-session
 echo " * soft nofile 999999" | tee -a /etc/security/limits.conf > /dev/null
 echo " * hard nofile 999999" | tee -a /etc/security/limits.conf > /dev/null
