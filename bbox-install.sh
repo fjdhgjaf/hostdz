@@ -599,7 +599,7 @@ c_rehash >> $logfile 2>&1
 # 96.
 
 if [ "$INSTALLOPENVPN1" = "YES" ]; then
-  bash /etc/bbox/installOpenVPN
+##  bash /etc/bbox/installOpenVPN
 fi
 
 if [ "$INSTALLSABNZBD1" = "YES" ]; then
@@ -702,6 +702,7 @@ fi
 if [ "$OSV11" = "8" ]; then
   systemctl enable apache2 >> $logfile 2>&1
   service apache2 start >> $logfile 2>&1 
+  echo "net.core.default_qdisc = fq" >>/etc/sysctl.conf >> $logfile 2>&1
 fi
 
 #clear
@@ -725,7 +726,7 @@ echo "net.ipv4.ip_local_port_range = 10240 65535" >>/etc/sysctl.conf >> $logfile
 echo "fs.file-max = 2097152" >>/etc/sysctl.conf >> $logfile 2>&1
 echo "net.ipv4.tcp_no_metrics_save = 1" >>/etc/sysctl.conf >> $logfile 2>&1
 echo "net.ipv4.tcp_mtu_probing = 1" >>/etc/sysctl.conf >> $logfile 2>&1
-echo "net.core.default_qdisc = fq" >>/etc/sysctl.conf >> $logfile 2>&1
+##echo "net.core.default_qdisc = fq" >>/etc/sysctl.conf >> $logfile 2>&1
 
 echo "vm.min_free_kbytes = 1024" >> /etc/sysctl.conf >> $logfile 2>&1
 echo "net.ipv4.tcp_rfc1337 = 1" >> /etc/sysctl.conf >> $logfile 2>&1
@@ -742,15 +743,14 @@ apt-get install --force-yes --yes cpufrequtils memcached >> $logfile
 sleep 5
 cpufreq-set -r -g performance
 
-/sbin/modprobe tcp_htcp >> $logfile 2>&1
-/sbin/modprobe tcp_cubic >> $logfile 2>&1
+##/sbin/modprobe tcp_htcp >> $logfile 2>&1
+##/sbin/modprobe tcp_cubic >> $logfile 2>&1
 
 echo "session required pam_limits.so" >>/etc/pam.d/common-session
 echo " * soft nofile 999999" | tee -a /etc/security/limits.conf > /dev/null
 echo " * hard nofile 999999" | tee -a /etc/security/limits.conf > /dev/null
 echo "session required pam_limits.so" | tee -a /etc/pam.d/common-session* > /dev/null
 echo "session required pam_limits.so" | tee -a /etc/pam.d/common-session > /dev/null
-sed -i "s/defaults 1 1/defaults,noatime 0 0/" /etc/fstab >> $logfile 2>&1
 
 echo -e "\e[1;32mDone!\e[1;35m"
 echo -n "Add new seedbox user.."
@@ -785,8 +785,7 @@ bash /etc/bbox/egyeb/ApiUpd >> $logfile 2>&1
 rm -f -r ~/bbox-install.sh
 echo -e "\e[1;32mDone!\e[1;35m"
 echo -n  "Rebooting now.."
-bash /etc/bbox/egyeb/TeljesitmenyNoveles.sh >> $logfile 2>&1
-sleep 5
+sleep 1
 echo -e "\e[1;32mDone!\e[0m"
 
 reboot
