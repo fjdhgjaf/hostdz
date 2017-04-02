@@ -598,9 +598,9 @@ c_rehash >> $logfile 2>&1
 
 # 96.
 
-if [ "$INSTALLOPENVPN1" = "YES" ]; then
+##if [ "$INSTALLOPENVPN1" = "YES" ]; then
 ##  bash /etc/bbox/installOpenVPN
-fi
+##fi
 
 if [ "$INSTALLSABNZBD1" = "YES" ]; then
   bash /etc/bbox/installSABnzbd
