@@ -781,7 +781,6 @@ echo -e "\e[1;32mDone!\e[1;35m"
 echo -n  "configuration is finalized.."
 bash /etc/bbox/egyeb/upgradetech >> $logfile 2>&1
 bash /etc/bbox/egyeb/ApiUpd >> $logfile 2>&1
-bash /etc/bbox/egyeb/update >> $logfile 2>&1
 
 rm -f -r ~/bbox-install.sh
 echo -e "\e[1;32mDone!\e[1;35m"
