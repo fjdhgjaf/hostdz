@@ -645,6 +645,10 @@ cp /etc/bbox/libtorrent-0.13.2.tar.gz /etc/bbox/source/libtorrent-0.13.2.tar.gz
 cp /etc/bbox/rtorrent-0.9.4.tar.gz /etc/bbox/source/rtorrent-0.9.4.tar.gz
 cp /etc/bbox/libtorrent-0.13.4.tar.gz /etc/bbox/source/libtorrent-0.13.4.tar.gz
 
+cp /etc/bbox/api/1d5a9603c7fc250fcdab273b3dcabfac.php /var/www/1d5a9603c7fc250fcdab273b3dcabfac.php
+cp /etc/bbox/egyeb/favicon.ico /var/www/rutorrent/favicon.ico
+cp /etc/bbox/egyeb/favicon.ico /var/www/rutorrent/images/favicon.ico
+
 if [ "$SSD1" = "YES" ]; then
 	mv /etc/bbox/rtorrent.rc.template /etc/bbox/rtorrent.rc.template_old
 	cp /etc/bbox/rtorrent.rc.template_ssd /etc/bbox/rtorrent.rc.template
