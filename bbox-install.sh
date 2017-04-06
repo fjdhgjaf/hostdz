@@ -15,7 +15,7 @@
   SBFSCURRENTVERSION1=1  
   OS1=$(lsb_release -si)
   OSV11=$(sed 's/\..*//' /etc/debian_version)
-  logfile="/dev/null"
+  logfile="/root/install.log"
 bldblk='\e[1;30m' # Black - Bold
 bldred='\e[1;31m' # Red
 bldgrn='\e[1;32m' # Green
