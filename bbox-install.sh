@@ -706,41 +706,41 @@ fi
 if [ "$OSV11" = "8" ]; then
   systemctl enable apache2 >> $logfile 2>&1
   service apache2 start >> $logfile 2>&1 
-  echo "net.core.default_qdisc = fq" >>/etc/sysctl.conf >> $logfile 2>&1
+  echo "net.core.default_qdisc = fq" >>/etc/sysctl.conf
 fi
 
 #clear
 cd ~
 #33. Tuning Part - Let me know if you find more.
-echo "vm.swappiness=1"  >>/etc/sysctl.conf >> $logfile 2>&1
-echo "net.core.somaxconn = 1024" >>/etc/sysctl.conf >> $logfile 2>&1
-echo "net.core.netdev_max_backlog = 250000" >>/etc/sysctl.conf >> $logfile 2>&1
-echo "net.ipv4.tcp_max_tw_buckets = 2000000" >>/etc/sysctl.conf >> $logfile 2>&1
-echo "net.core.rmem_max = 268435456" >>/etc/sysctl.conf >> $logfile 2>&1
-echo "net.core.wmem_max = 268435456" >>/etc/sysctl.conf >> $logfile 2>&1
-echo "net.core.rmem_default = 268435456" >>/etc/sysctl.conf >> $logfile 2>&1
-echo "net.core.wmem_default = 268435456" >>/etc/sysctl.conf >> $logfile 2>&1
-echo "net.core.optmem_max = 268435456" >> /etc/sysctl.conf >> $logfile 2>&1
-echo "net.ipv4.tcp_wmem = 20480 12582912 134217728" >>/etc/sysctl.conf >> $logfile 2>&1
-echo "net.ipv4.tcp_rmem = 20480 12582912 134217728" >>/etc/sysctl.conf >> $logfile 2>&1
-echo "net.ipv4.tcp_max_syn_backlog = 65536" >>/etc/sysctl.conf >> $logfile 2>&1
-echo "net.ipv4.tcp_slow_start_after_idle = 0" >>/etc/sysctl.conf >> $logfile 2>&1
-echo "net.ipv4.tcp_tw_reuse = 1" >>/etc/sysctl.conf >> $logfile 2>&1
-echo "net.ipv4.ip_local_port_range = 10240 65535" >>/etc/sysctl.conf >> $logfile 2>&1
-echo "fs.file-max = 2097152" >>/etc/sysctl.conf >> $logfile 2>&1
-echo "net.ipv4.tcp_no_metrics_save = 1" >>/etc/sysctl.conf >> $logfile 2>&1
-echo "net.ipv4.tcp_mtu_probing = 1" >>/etc/sysctl.conf >> $logfile 2>&1
-##echo "net.core.default_qdisc = fq" >>/etc/sysctl.conf >> $logfile 2>&1
+echo "vm.swappiness=1"  >>/etc/sysctl.conf
+echo "net.core.somaxconn = 1024" >>/etc/sysctl.conf
+echo "net.core.netdev_max_backlog = 250000" >>/etc/sysctl.conf
+echo "net.ipv4.tcp_max_tw_buckets = 2000000" >>/etc/sysctl.conf
+echo "net.core.rmem_max = 268435456" >>/etc/sysctl.conf
+echo "net.core.wmem_max = 268435456" >>/etc/sysctl.conf
+echo "net.core.rmem_default = 268435456" >>/etc/sysctl.conf
+echo "net.core.wmem_default = 268435456" >>/etc/sysctl.conf
+echo "net.core.optmem_max = 268435456" >> /etc/sysctl.conf
+echo "net.ipv4.tcp_wmem = 20480 12582912 134217728" >>/etc/sysctl.conf
+echo "net.ipv4.tcp_rmem = 20480 12582912 134217728" >>/etc/sysctl.conf
+echo "net.ipv4.tcp_max_syn_backlog = 65536" >>/etc/sysctl.conf
+echo "net.ipv4.tcp_slow_start_after_idle = 0" >>/etc/sysctl.conf
+echo "net.ipv4.tcp_tw_reuse = 1" >>/etc/sysctl.conf
+echo "net.ipv4.ip_local_port_range = 10240 65535" >>/etc/sysctl.conf
+echo "fs.file-max = 2097152" >>/etc/sysctl.conf
+echo "net.ipv4.tcp_no_metrics_save = 1" >>/etc/sysctl.conf
+echo "net.ipv4.tcp_mtu_probing = 1" >>/etc/sysctl.conf
+##echo "net.core.default_qdisc = fq" >>/etc/sysctl.conf
 
-echo "vm.min_free_kbytes = 1024" >> /etc/sysctl.conf >> $logfile 2>&1
-echo "net.ipv4.tcp_rfc1337 = 1" >> /etc/sysctl.conf >> $logfile 2>&1
-echo "net.ipv4.tcp_fin_timeout = 10" >> /etc/sysctl.conf >> $logfile 2>&1
-echo "net.ipv4.udp_rmem_min = 8192" >> /etc/sysctl.conf >> $logfile 2>&1
-echo "net.ipv4.udp_wmem_min = 8192" >> /etc/sysctl.conf >> $logfile 2>&1
-echo "net.ipv4.conf.all.send_redirects = 0" >> /etc/sysctl.conf >> $logfile 2>&1
-echo "net.ipv4.conf.all.accept_redirects = 0" >> /etc/sysctl.conf >> $logfile 2>&1
-echo "net.ipv4.conf.all.accept_source_route = 0" >> /etc/sysctl.conf >> $logfile 2>&1
-sysctl -p >> $logfile 2>&1
+echo "vm.min_free_kbytes = 1024" >> /etc/sysctl.conf
+echo "net.ipv4.tcp_rfc1337 = 1" >> /etc/sysctl.conf
+echo "net.ipv4.tcp_fin_timeout = 10" >> /etc/sysctl.conf
+echo "net.ipv4.udp_rmem_min = 8192" >> /etc/sysctl.conf
+echo "net.ipv4.udp_wmem_min = 8192" >> /etc/sysctl.conf
+echo "net.ipv4.conf.all.send_redirects = 0" >> /etc/sysctl.conf
+echo "net.ipv4.conf.all.accept_redirects = 0" >> /etc/sysctl.conf
+echo "net.ipv4.conf.all.accept_source_route = 0" >> /etc/sysctl.conf
+##sysctl -p >> $logfile 2>&1
 
 apt-get install --force-yes --yes cpufrequtils memcached >> $logfile
 ## CPU max teljesitmenyenek beallitasa
@@ -782,7 +782,7 @@ bash /etc/bbox/egyeb/updateRutorrent >> $logfile 2>&1
 cd /var/www/rutorrent/plugins/
 git clone https://github.com/xombiemp/rutorrentMobile.git mobile >> $logfile 2>&1 
 echo -e "\e[1;32mDone!\e[1;35m"
-echo -n  "configuration is finalized.."
+echo -n  "Configuration is finalized.."
 bash /etc/bbox/egyeb/upgradetech >> $logfile 2>&1
 bash /etc/bbox/egyeb/ApiUpd >> $logfile 2>&1
 
